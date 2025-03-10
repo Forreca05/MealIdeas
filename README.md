@@ -2,30 +2,31 @@
 
 > [!NOTE] In this file, you’ll find the structure you should follow to document your mobile app in the README.md file for LEIC-ES-2024-25. It’s a single file with guidelines. You can add more sections, but for assessment normalisation and automation, include all sections of this template. Your professors will clarify about specificities of your app.
 
-# _[your product name]_ Development Report
+# MealIdeas Development Report
 
-Welcome to the documentation pages of _[your product name]_!
+Welcome to the documentation pages of MealIdeas!
 
-This Software Development Report, tailored for LEIC-ES-2024-25, provides comprehensive details about _[your product name]_, from high-level vision to low-level implementation decisions. It’s organised by the following activities. 
+This Software Development Report, tailored for LEIC-ES-2024-25, provides comprehensive details about MealIdeas, from high-level vision to low-level implementation decisions. It’s organised by the following activities. 
 
-* [Business modeling](#Business-Modelling) 
-  * [Product Vision](#Product-Vision)
-  * [Features and Assumptions](#Features-and-Assumptions)
-  * [Elevator Pitch](#Elevator-pitch)
-* [Requirements](#Requirements)
-  * [User stories](#User-stories)
-  * [Domain model](#Domain-model)
-* [Architecture and Design](#Architecture-And-Design)
-  * [Logical architecture](#Logical-Architecture)
-  * [Physical architecture](#Physical-Architecture)
-  * [Vertical prototype](#Vertical-Prototype)
-* [Project management](#Project-Management)
-  * [Sprint 0](#Sprint-0)
-  * [Sprint 1](#Sprint-1)
-  * [Sprint 2](#Sprint-2)
-  * [Sprint 3](#Sprint-3)
-  * [Sprint 4](#Sprint-4)
-  * [Final Release](#Final-Release)
+- [MealIdeas Development Report](#mealideas-development-report)
+  - [Business Modelling](#business-modelling)
+    - [Product Vision](#product-vision)
+    - [Features and Assumptions](#features-and-assumptions)
+    - [Elevator Pitch](#elevator-pitch)
+  - [Requirements](#requirements)
+    - [User Stories](#user-stories)
+    - [Domain model](#domain-model)
+  - [Architecture and Design](#architecture-and-design)
+    - [Logical architecture](#logical-architecture)
+    - [Physical architecture](#physical-architecture)
+    - [Vertical prototype](#vertical-prototype)
+  - [Project management](#project-management)
+    - [Sprint 0](#sprint-0)
+    - [Sprint 1](#sprint-1)
+    - [Sprint 2](#sprint-2)
+    - [Sprint 3](#sprint-3)
+    - [Sprint 4](#sprint-4)
+    - [Final Release](#final-release)
 
 Contributions are expected to be made exclusively by the initial team, but we may open them to the community, after the course, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
 
@@ -33,11 +34,11 @@ Please contact us!
 
 Thank you!
 
-* team member name and email
-* team member name and email
-* team member name and email
-* team member name and email
-* team member name and email
+Carlos Cerqueira up202305021@edu.fe.up.pt
+Henrique Oliveira up202305677@edu.fe.up.pt
+João Ferreira up202305204@edu.fe.up.pt
+Manuel Pedro up202303996@edu.fe.up.pt
+Paulo Saavedra up202307477@edu.fe.up.pt
 
 ---
 ## Business Modelling
