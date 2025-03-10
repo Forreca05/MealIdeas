@@ -34,11 +34,11 @@ Please contact us!
 
 Thank you!
 
-Carlos Cerqueira up202305021@edu.fe.up.pt
-Henrique Oliveira up202305677@edu.fe.up.pt
-João Ferreira up202305204@edu.fe.up.pt
-Manuel Pedro up202303996@edu.fe.up.pt
-Paulo Saavedra up202307477@edu.fe.up.pt
+• Carlos Cerqueira - up202305021@edu.fe.up.pt  
+• Henrique Oliveira - up202305677@edu.fe.up.pt  
+• João Ferreira - up202305204@edu.fe.up.pt  
+• Manuel Pedro - up202303996@edu.fe.up.pt  
+• Paulo Saavedra - up202307477@edu.fe.up.pt  
 
 ---
 ## Business Modelling
