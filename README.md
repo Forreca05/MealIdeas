@@ -81,6 +81,7 @@ Indicate an  initial/tentative list of high-level features - high-level capabili
 
 Optionally, indicate an initial/tentative list of assumptions that you are doing about the app and dependencies of the app to other systems.
 -->
+- Get recipe suggestions based on your leftover ingredients to reduce food waste.  
 - Get notified when items in your stock are about to expire.  
 - Receive smart suggestions on what food items to buy based on your inventory.  
 - Scan ingredients easily to add them to your inventory.  
