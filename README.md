@@ -43,7 +43,10 @@ Thank you!
 ---
 ## Business Modelling
 
-Business modeling in software development involves defining the product's vision, understanding market needs, aligning features with user expectations, and setting the groundwork for strategic planning and execution.
+Our project aims to develop an app that contributes to the Sustainable Development Goals (SDGs) by promoting smarter meal planning and reducing food waste. While initially designed for the FEUP community, the app has the potential to expand to other institutions, encouraging sustainable food consumption on a larger scale.
+
+The core focus of our app is efficient food management and waste reduction. By helping users track their food inventory, receive meal suggestions based on available ingredients, and get notified about expiration dates, the app encourages more mindful grocery use. This not only saves money and time but also promotes a more sustainable approach to daily cooking habits.
+
 
 ### Product Vision
 
@@ -66,7 +69,7 @@ To learn more about how to write a good product vision, please see:
 * [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
 -->
 
-MealIdeas: Turn the ingredients you have at home into delicious and creative meals.
+MealIdeas, turn the ingredients you have at home into delicious and creative meals.
 Our app helps users generate meal ideas based on available ingredients while also tracking stored food, reducing waste, and simplifying meal planning.
 
 ### Features and Assumptions
@@ -78,6 +81,13 @@ Indicate an  initial/tentative list of high-level features - high-level capabili
 
 Optionally, indicate an initial/tentative list of assumptions that you are doing about the app and dependencies of the app to other systems.
 -->
+- Get notified when items in your stock are about to expire.  
+- Receive smart suggestions on what food items to buy based on your inventory.  
+- Scan ingredients easily to add them to your inventory.  
+- Organize your ingredients with custom categories.  
+- Share your favorite recipes with others.  
+- Set up your account seamlessly with the Get Started page.  
+- Customize your preferences by marking disliked foods or allergies.  
 
 ### Elevator Pitch
 <!-- 
