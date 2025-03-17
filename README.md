@@ -66,6 +66,8 @@ To learn more about how to write a good product vision, please see:
 * [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
 -->
 
+MealIdeas: Turn the ingredients you have at home into delicious and creative meals.
+Our app helps users generate meal ideas based on available ingredients while also tracking stored food, reducing waste, and simplifying meal planning.
 
 ### Features and Assumptions
 <!-- 
@@ -86,6 +88,14 @@ Take a look at the following links to learn some techniques:
 * [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
 * [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
 -->
+
+Hi! I'm part of a group of students developing an app to make cooking easier and reduce food waste.
+
+Have you ever opened your fridge, seen a bunch of ingredients, and still had no idea what to cook? That’s exactly the problem we’re solving with MealIdeas! Our app suggests creative and delicious recipes based on what you already have at home. Simply log your ingredients, and MealIdeas will do the rest. Plus, it helps you track your food inventory, so you waste less and plan meals effortlessly.
+
+No more last-minute grocery runs or wasted food—MealIdeas makes cooking simple, efficient, and fun.
+
+So, what’s the last ingredient you forgot at the back of your fridge?
 
 ## Requirements
 
