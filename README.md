@@ -151,6 +151,17 @@ Example:
 </p>
 -->
 
+ <p align="center" justify="center">
+  <img src="img/DomainModelUML.png"/>
+</p>
+
+The user has attributes such as name and email. Each user can have multiple items, each identified by an ID, a name, a quantity, and an expiry date. Every item belongs to a specific category, which helps organize ingredients efficiently by grouping similar items together.
+
+Based on the items a user owns, a shopping list can be created. Each shopping list is tracked by an ID and has a status indicating whether it is pending or completed.
+
+Recipes are identified by an ID, a name, and a set of instructions. Each recipe is associated with multiple ingredients and includes a userRating attribute, allowing users to rate recipes based on their experience.
+
+Notifications keep users informed about important events, such as item expirations or shopping list updates. Each notification has an ID, a message, a date, and a type, and is linked to a specific user. This ensures that users receive relevant updates tailored to their inventory and preferences.
 
 ## Architecture and Design
 <!--
