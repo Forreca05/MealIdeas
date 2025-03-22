@@ -151,7 +151,7 @@ Example:
 </p>
 -->
 
- <p align="center" justify="center">
+<p align="center" justify="center">
   <img src="img/DomainModelUML.png"/>
 </p>
 
@@ -186,6 +186,13 @@ Example of _UML package diagram_ showing a _logical view_ of the Eletronic Ticke
 ![LogicalView](https://user-images.githubusercontent.com/9655877/160585416-b1278ad7-18d7-463c-b8c6-afa4f7ac7639.png)
 -->
 
+<p align="center" justify="center">
+  <img src="img/LogicalArchitectureUML.png"/>
+</p>
+
+The user interacts with the MealIdeas UI to perform actions such as searching for recipes or managing the inventory. These requests are processed through the business logic layer, which manages data flow and ensures smooth interactions.
+
+The business logic layer retrieves and stores relevant information using Google Firebase services. Firestore is utilized for structured data management, while Cloud Storage handles multimedia content. Additionally, external data is fetched from the Spoonacular API to enhance the app’s functionality with recipe and meal-related insights.
 
 ### Physical architecture
 <!--
