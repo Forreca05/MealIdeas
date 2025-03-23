@@ -206,7 +206,7 @@ Example of _UML deployment diagram_ showing a _deployment view_ of the Eletronic
 </p>
 
 Each user interacts with the application via their device, which in turn accesses Firebase external machine to retrieve
-necessary data. Firebase interacts with Spoonacular API to obtain new recipes. This approach provides better security by hiding API keys and sensitive credentials on seerver side, while making the app more scalable and easier to maintain.
+necessary data. Firebase interacts with Spoonacular API to obtain new recipes. This approach provides better security by hiding API keys and sensitive credentials on the server side, while making the app more scalable and easier to maintain.
 
 ### Vertical prototype
 <!--
