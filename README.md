@@ -85,7 +85,6 @@ Optionally, indicate an initial/tentative list of assumptions that you are doing
 - Get notified when items in your stock are about to expire.  
 - Receive smart suggestions on what food items to buy based on your inventory.  
 - Scan ingredients easily to add them to your inventory.  
-- Organize your ingredients with custom categories.  
 - Share your favorite recipes with others.  
 - Set up your account seamlessly with the Get Started page.  
 - Customize your preferences by marking disliked foods or allergies.  
@@ -155,9 +154,7 @@ Example:
   <img src="img/DomainModelUML.png"/>
 </p>
 
-The user has attributes such as name and email. Each user can have multiple items, each identified by an ID, a name, a quantity, and an expiry date. Every item belongs to a specific category, which helps organize ingredients efficiently by grouping similar items together.
-
-Based on the items a user owns, a shopping list can be created. Each shopping list is tracked by an ID and has a status indicating whether it is pending or completed.
+The user has attributes such as name and email. Each user can have multiple items, each identified by an ID, a name, a quantity, and an expiry date. Based on the items a user owns, a shopping list can be created. Each shopping list is tracked by an ID and has a status indicating whether it is pending or completed.
 
 Recipes are identified by an ID, a name, and a set of instructions. Each recipe is associated with multiple ingredients and includes a userRating attribute, allowing users to rate recipes based on their experience.
 
@@ -205,6 +202,30 @@ Example of _UML deployment diagram_ showing a _deployment view_ of the Eletronic
 ![DeploymentView](https://user-images.githubusercontent.com/9655877/160592491-20e85af9-0758-4e1e-a704-0db1be3ee65d.png)
 -->
 
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+
+  <div style="text-align: center; margin: 10px;">
+    <p>Initial Page 1</p>
+    <img src="img/Initialpage1.png" alt="Initial Page 1" width="200"/>
+  </div>
+
+  <div style="text-align: center; margin: 10px;">
+    <p>Initial Page 2</p>
+    <img src="img/Initialpage2.png" alt="Initial Page 2" width="200"/>
+  </div>
+
+</div>
+
+<div style="text-align: center; margin: 10px;">
+  <p>My Profile</p>
+  <img src="img/MyProfile.png" alt="My Profile" width="200"/>
+</div>
+
+The vertical prototype we developed was implemented using FlutterFlow and focused on integrating key features such as scanning ingredients and managing the user's inventory. Using FlutterFlow, we created a user-friendly interface where users can scan ingredients, and the app automatically updates their inventory.
+
+Upon opening the app, users are greeted with a simple and functional interface. The scanned ingredients are processed and stored in Firebase Firestore, and their details are updated in the user's inventory. The app also includes an "About Us" page, which functions perfectly and provides users with information about the app and its goals, such as reducing food waste.
+
+While the core functionality is in place, some screens remain basic at this stage. However, the foundation has been set.
 
 ### Vertical prototype
 <!--
