@@ -201,25 +201,27 @@ Example of _UML deployment diagram_ showing a _deployment view_ of the Eletronic
 
 ![DeploymentView](https://user-images.githubusercontent.com/9655877/160592491-20e85af9-0758-4e1e-a704-0db1be3ee65d.png)
 -->
+<table align="center">
+  <tr>
+    <td align="center">
+      <p>Initial Page 1</p>
+      <img src="img/Initialpage1.png" alt="Initial Page 1" width="200"/>
+    </td>
+    <td align="center">
+      <p>Initial Page 2</p>
+      <img src="img/Initialpage2.png" alt="Initial Page 2" width="200"/>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <p>My Profile</p>
+      <img src="img/MyProfile.png" alt="My Profile" width="200"/>
+    </td>
+  </tr>
+</table>
 
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
 
-  <div style="text-align: center; margin: 10px;">
-    <p>Initial Page 1</p>
-    <img src="img/Initialpage1.png" alt="Initial Page 1" width="200"/>
-  </div>
 
-  <div style="text-align: center; margin: 10px;">
-    <p>Initial Page 2</p>
-    <img src="img/Initialpage2.png" alt="Initial Page 2" width="200"/>
-  </div>
-
-</div>
-
-<div style="text-align: center; margin: 10px;">
-  <p>My Profile</p>
-  <img src="img/MyProfile.png" alt="My Profile" width="200"/>
-</div>
 
 The vertical prototype we developed was implemented using FlutterFlow and focused on integrating key features such as scanning ingredients and managing the user's inventory. Using FlutterFlow, we created a user-friendly interface where users can scan ingredients, and the app automatically updates their inventory.
 
