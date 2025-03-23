@@ -138,6 +138,18 @@ At the end, it is good to add a rough indication of the value of the user story 
 
 -->
 
+| ID  | User Story | Priority | Effort |
+|---- |-----------|----------|--------|
+| 1   | **Recipe Suggestions**: As a user, I want to receive recipe suggestions for using my leftover ingredients, so that I can reduce food waste and create meals without wasting food. | Must Have | 8 |
+| 2   | **Item Stock Expiry Notifications**: As a user, I want the app to notify me when my leftovers are about to expire so I can use them in time. | Should Have | 5 |
+| 3   | **Share Recipes**: As a user, I want to share my recipes with others so they can try them. | Could Have | 3 |
+| 4   | **Ingredient Scan**: As a user, I want to scan or manually enter the leftover ingredients in my fridge so that I can keep track of what I have available. | Could Have | 5 |
+| 5   | **Get Started Page**: As a new user of the app, I want to see a clear introduction to the app, so that I can easily understand the app’s purpose and begin using it immediately. | Must Have | 2 |
+| 6   | **Disliked Food/Allergies**: As a user of the app, I want to specify my disliked foods and any food allergies, so that the app can recommend safe and personalized food options for me. | Should Have | 3 |
+| 7   | **About Us Page**: As a potential or new user, I want to learn more about the company, its information, how to contact them, etc., so that I can better understand the app's purpose and the people behind it. | Must Have | 2 |
+| 8   | **My Profile**: As a user, I want a page to view information about my profile, preferences, so that I can keep my account up to date and personalize my experience. | Should Have | 3 |
+
+
 ### Domain model
 
 <!-- 
