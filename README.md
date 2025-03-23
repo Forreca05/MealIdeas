@@ -201,6 +201,16 @@ Example of _UML deployment diagram_ showing a _deployment view_ of the Eletronic
 
 ![DeploymentView](https://user-images.githubusercontent.com/9655877/160592491-20e85af9-0758-4e1e-a704-0db1be3ee65d.png)
 -->
+
+### Vertical prototype
+<!--
+To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system integrating as much technologies we can.
+
+In this subsection please describe which feature, or part of it, you have implemented, and how, together with a snapshot of the user interface, if applicable.
+
+At this phase, instead of a complete user story, you can simply implement a small part of a feature that demonstrates thay you can use the technology, for example, show a screen with the app credits (name and authors).
+-->
+
 <table align="center">
   <tr>
     <td align="center">
@@ -220,23 +230,11 @@ Example of _UML deployment diagram_ showing a _deployment view_ of the Eletronic
   </tr>
 </table>
 
-
-
-
 The vertical prototype we developed was implemented using FlutterFlow and focused on integrating key features such as scanning ingredients and managing the user's inventory. Using FlutterFlow, we created a user-friendly interface where users can scan ingredients, and the app automatically updates their inventory.
 
 Upon opening the app, users are greeted with a simple and functional interface. The scanned ingredients are processed and stored in Firebase Firestore, and their details are updated in the user's inventory. The app also includes an "About Us" page, which functions perfectly and provides users with information about the app and its goals, such as reducing food waste.
 
 While the core functionality is in place, some screens remain basic at this stage. However, the foundation has been set.
-
-### Vertical prototype
-<!--
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system integrating as much technologies we can.
-
-In this subsection please describe which feature, or part of it, you have implemented, and how, together with a snapshot of the user interface, if applicable.
-
-At this phase, instead of a complete user story, you can simply implement a small part of a feature that demonstrates thay you can use the technology, for example, show a screen with the app credits (name and authors).
--->
 
 ## Project management
 <!--
