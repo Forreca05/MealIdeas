@@ -25,7 +25,6 @@ This Software Development Report, tailored for LEIC-ES-2024-25, provides compreh
     - [Sprint 1](#sprint-1)
     - [Sprint 2](#sprint-2)
     - [Sprint 3](#sprint-3)
-    - [Sprint 4](#sprint-4)
     - [Final Release](#final-release)
 
 Contributions are expected to be made exclusively by the initial team, but we may open them to the community, after the course, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
@@ -277,7 +276,8 @@ You can find below information and references related with the project managemen
 -->
 
 - **Backlog Management**: [GitHub Project Board](https://github.com/orgs/LEIC-ES-2024-25/projects/27)
-- **Release Management**: [GitHub Project Board](<INSERIR_LINK_AQUI>)  
+- **Release Management**: 
+  [Sprint 0](<INSERIR_LINK_AQUI>)  
 
 
 ### Sprint 0
