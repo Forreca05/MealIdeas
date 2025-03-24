@@ -278,7 +278,6 @@ You can find below information and references related with the project managemen
 
 - **Backlog Management**: [GitHub Project Board](https://github.com/orgs/LEIC-ES-2024-25/projects/27)
 - **Release Management**: [GitHub Project Board](<INSERIR_LINK_AQUI>)  
-- **Sprint Planning and Retrospectives**: [GitHub Project Board](<INSERIR_LINK_AQUI>)  
 
 
 ### Sprint 0
@@ -300,7 +299,6 @@ For the next sprint, our goal is at least to make all screens fully operational,
 
 ### Sprint 3
 
-### Sprint 4
 
 ### Final Release
 
