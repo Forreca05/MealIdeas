@@ -276,7 +276,7 @@ You can find below information and references related with the project managemen
 
 -->
 
-- **Backlog Management**: [GitHub Project Board](<[INSERIR_LINK_AQUI](https://github.com/orgs/LEIC-ES-2024-25/projects/27)>)  
+- **Backlog Management**: [GitHub Project Board](https://github.com/orgs/LEIC-ES-2024-25/projects/27)
 - **Release Management**: [GitHub Project Board](<INSERIR_LINK_AQUI>)  
 - **Sprint Planning and Retrospectives**: [GitHub Project Board](<INSERIR_LINK_AQUI>)  
 
@@ -288,9 +288,7 @@ You can find below information and references related with the project managemen
 For the next sprint, our goal is at least to make all screens fully operational, ensure the scanning feature is fully functional, and complete both the About Us and Profile pages.
 
 
-<p style="background-color: #333; color: white; text-align: center; padding: 10px; margin-bottom: 20px;">
-  Board at the End of Sprint 0
-</p>
+> ## Board at the End of Sprint 0
 <img src="img/Sprint0Board.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
 
