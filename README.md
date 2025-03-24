@@ -288,7 +288,7 @@ You can find below information and references related with the project managemen
 For the next sprint, our goal is at least to make all screens fully operational, ensure the scanning feature is fully functional, and complete both the About Us and Profile pages.
 
 
-> ## Board at the End of Sprint 0
+> ### Board at the End of Sprint 0
 <img src="img/Sprint0Board.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
 
