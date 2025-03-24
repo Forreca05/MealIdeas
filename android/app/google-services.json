@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "144961024769",
+    "project_id": "meal-idea-esof",
+    "storage_bucket": "meal-idea-esof.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144961024769:android:8eb3e5839faf45333ae100",
+        "android_client_info": {
+          "package_name": "com.mealideas.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASOGQxBdVHx7c3boua8Aue6Bnl-Apx-SY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
