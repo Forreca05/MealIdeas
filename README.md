@@ -68,7 +68,7 @@ To learn more about how to write a good product vision, please see:
 * [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
 -->
 
-MealIdeas, turn the ingredients you have at home into delicious and creative meals.
+MealIdeas turnz the ingredients you have at home into delicious and creative meals.
 Our app helps users generate meal ideas based on available ingredients while also tracking stored food, reducing waste, and simplifying meal planning.
 
 ### Features and Assumptions
