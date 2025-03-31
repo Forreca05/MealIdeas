@@ -149,6 +149,18 @@ At the end, it is good to add a rough indication of the value of the user story 
 | 8   | **My Profile**: As a user, I want a page to view information about my profile, preferences, so that I can keep my account up to date and personalize my experience. | Should Have | 3 |
 -->
 
+Our project is designed to help users reduce food waste and efficiently manage their leftover ingredients. The core functionality revolves around recipe suggestions (Must Have, effort: 8), allowing users to find meal ideas based on what they already have.
+
+To ensure food is used before it expires, the app will include item stock expiry notifications (Should Have, effort: 5), alerting users when their ingredients are close to going bad. Users will also be able to scan or manually enter ingredients (Could Have, effort: 5) to keep track of their available food.
+
+Personalization is key, so the app will allow users to specify disliked foods and allergies (Should Have, effort: 3), ensuring they receive only relevant and safe recipe recommendations. Additionally, users will have access to a profile page (Should Have, effort: 3) where they can manage their preferences.
+
+For usability, new users will be introduced to the app through a Get Started page (Must Have, effort: 2), while an About Us page (Must Have, effort: 2) will provide company information.
+
+As an additional feature, users will be able to share recipes (Could Have, effort: 3), fostering a community-driven experience.
+
+These features are prioritized based on their impact, ensuring a well-balanced development process while maintaining a user-friendly experience.
+
 ### Domain model
 
 <!-- 
