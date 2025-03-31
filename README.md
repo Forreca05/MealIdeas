@@ -68,7 +68,7 @@ To learn more about how to write a good product vision, please see:
 * [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
 -->
 
-MealIdeas, turn the ingredients you have at home into delicious and creative meals.
+MealIdeas turns the ingredients you have at home into delicious and creative meals.
 Our app helps users generate meal ideas based on available ingredients while also tracking stored food, reducing waste, and simplifying meal planning.
 
 ### Features and Assumptions
@@ -136,7 +136,7 @@ For each user story you should write also the acceptance tests (textually in [Gh
 At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using points in a kind-of-a Fibonnacci scale (1,2,3,5,8,13,20,40, no idea).
 
 -->
-
+<!-- Adicionar um resumo
 | ID  | User Story | Priority | Effort |
 |---- |-----------|----------|--------|
 | 1   | **Recipe Suggestions**: As a user, I want to receive recipe suggestions for using my leftover ingredients, so that I can reduce food waste and create meals without wasting food. | Must Have | 8 |
@@ -147,7 +147,7 @@ At the end, it is good to add a rough indication of the value of the user story 
 | 6   | **Disliked Food/Allergies**: As a user of the app, I want to specify my disliked foods and any food allergies, so that the app can recommend safe and personalized food options for me. | Should Have | 3 |
 | 7   | **About Us Page**: As a potential or new user, I want to learn more about the company, its information, how to contact them, etc., so that I can better understand the app's purpose and the people behind it. | Must Have | 2 |
 | 8   | **My Profile**: As a user, I want a page to view information about my profile, preferences, so that I can keep my account up to date and personalize my experience. | Should Have | 3 |
-
+-->
 
 ### Domain model
 
