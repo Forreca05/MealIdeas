@@ -289,7 +289,7 @@ You can find below information and references related with the project managemen
 
 - **Backlog Management**: [GitHub Project Board](https://github.com/orgs/LEIC-ES-2024-25/projects/27)
 - **Release Management**: 
-  [Sprint 0](<INSERIR_LINK_AQUI>)  
+  [Sprint 0](https://github.com/LEIC-ES-2024-25/2LEIC03T1/releases/tag/v0) - [Sprint 1]() - [Sprint2]() - [Sprint 3]()
 
 
 ### Sprint 0
@@ -306,6 +306,15 @@ For the next sprint, our goal is at least to make all screens fully operational,
 
 
 ### Sprint 1
+
+<strong>Overview</strong>: During Sprint 1, we were able to complete almost everything we had planned. The main goals were to finish implementing the core screens, finalize the scanning feature, and complete the About Us and Profile pages — all of which we successfully achieved. We also made improvements to the app’s logic and continued refining the user interface.
+
+Even though we completed our sprint objectives, we felt that we could have gone further. We hoped to begin exploring some additional features earlier, such as integrating more advanced inventory management or enhancing the customization of user preferences.
+
+For the upcoming sprint, our focus will shift to the new tasks visible in our project board — including ingredient connection with inventory, stock expiry notifications, and handling disliked foods or allergies. These additions aim to make the app smarter and more helpful for users managing their food at home.
+
+> ### Board at the End of Sprint 1
+<img src="img/Sprint1Board.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
 ### Sprint 2
 
