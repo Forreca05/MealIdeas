@@ -307,16 +307,21 @@ For the next sprint, our goal is at least to make all screens fully operational,
 
 ### Sprint 1
 
-<strong>Overview</strong>: During Sprint 1, we were able to complete almost everything we had planned. The main goals were to finish implementing the core screens, finalize the scanning feature, and complete the About Us and Profile pages — all of which we successfully achieved. We also made improvements to the app’s logic and continued refining the user interface.
+During Sprint 1, we successfully achieved nearly all of the goals we had set. Our main focus was to complete the core screens, polish the food scanning feature, and finalize both the About Us and Profile pages — all of which were delivered as planned. We also made small but important improvements to the overall user interface and app logic, making the experience more fluid and consistent.
 
-Even though we completed our sprint objectives, we felt that we could have gone further. We hoped to begin exploring some additional features earlier, such as integrating more advanced inventory management or enhancing the customization of user preferences.
+From a process perspective, this sprint was well-organized. Communication flowed effectively between team members, and responsibilities were distributed clearly. We tried to follow Agile practices such as using GitHub Projects to manage tasks, regularly updating our backlog, and staying aligned during brief check-ins.
 
-For the upcoming sprint, our focus will shift to the new tasks visible in our project board — including ingredient connection with inventory, stock expiry notifications, and handling disliked foods or allergies. These additions aim to make the app smarter and more helpful for users managing their food at home.
+Even though we’re happy with our progress, we felt we could’ve gone a bit further. We had hoped to begin exploring some of the upcoming features earlier — namely inventory integration, stock expiry notifications, and allergy or food preference handling. These are now our top priorities for the next sprint, as they’ll significantly enhance the app’s usefulness in everyday food management.
+
+Despite completing our original sprint goals, we came out of it wishing we had been able to push ahead into the next stage — a sign that we’re motivated and looking to continuously improve the product.
 
 > ### Board at the End of Sprint 1
-<img src="img/Sprint1Board.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+<img src="img/Sprint1BoardEnd.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
 ### Sprint 2
+
+> ### Board at the Begining of Sprint 2
+<img src="img/Sprint2BoardBeg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
 ### Sprint 3
 
