@@ -302,9 +302,6 @@ For the next sprint, our goal is at least to make all screens fully operational,
 > ### Board at the End of Sprint 0
 <img src="img/Sprint0Board.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
-
-
-
 ### Sprint 1
 
 During Sprint 1, we successfully achieved nearly all of the goals we had set. Our main focus was to complete the core screens, polish the food scanning feature, and finalize both the About Us and Profile pages — all of which were delivered as planned. We also made small but important improvements to the overall user interface and app logic, making the experience more fluid and consistent.
@@ -323,7 +320,23 @@ Despite completing our original sprint goals, we came out of it wishing we had b
 > ### Board at the Begining of Sprint 2
 <img src="img/Sprint2BoardBeg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
+During Sprint 2, the team focused on delivering several user-focused and structural features. Key progress was made on implementing support for disliked foods and allergies, manual ingredient entry, and navigation between screens. Other completed features included the ingredient scanning functionality, the onboarding/start page, user profile setup, and expiry notifications for stored items—laying important groundwork for the application.
+
+One planned task—connecting ingredients with the inventory system—was scheduled for this sprint but was not achieved within the time frame. This will be carried forward and prioritized in the upcoming sprint.
+
+For Sprint 3, the focus turns to recipe functionality and system integration. Planned tasks include recipe suggestion logic, performing API calls to fetch ingredient data, and completing the ingredient-to-inventory connection. These components are essential for enabling the app’s smart food management capabilities.
+
+As this is the final sprint, the team is focused in finishing every feature that was promissed in the begining, making the app more usable and clean and adding more functionalities if possible.
+
+> ### Board at the End of Sprint 2
+
+<img src="img/Sprint2BoardEnd.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+
 ### Sprint 3
+
+> ### Board at the Begining of Sprint 3
+<img src="img/Sprint3BoardBeg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+
 
 
 ### Final Release
