@@ -10,8 +10,8 @@ export 'empty_state_model.dart';
 class EmptyStateWidget extends StatefulWidget {
   const EmptyStateWidget({
     super.key,
-    required this.icon,
-    required this.title,
+    this.icon,
+    this.title,
     required this.description,
   });
 
@@ -59,21 +59,6 @@ class _EmptyStateWidgetState extends State<EmptyStateWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              widget!.icon!,
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
-                child: Text(
-                  valueOrDefault<String>(
-                    widget!.title,
-                    'Title',
-                  ),
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Inter',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                 child: Text(
@@ -83,8 +68,18 @@ class _EmptyStateWidgetState extends State<EmptyStateWidget> {
                   ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).labelLarge.override(
-                        fontFamily: 'Inter',
+                        font: GoogleFonts.inter(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).labelLarge.fontStyle,
+                        ),
                         letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).labelLarge.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).labelLarge.fontStyle,
                       ),
                 ),
               ),

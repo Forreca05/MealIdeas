@@ -15,7 +15,12 @@ export '/pages/profile/support_center/support_center_widget.dart'
     show SupportCenterWidget;
 export '/pages/x_forgot_password/x_forgot_password_widget.dart'
     show XForgotPasswordWidget;
-export '/pages/profile/edit_preferences/edit_preferences_widget.dart'
-    show EditPreferencesWidget;
+export '/pages/profile/edit_allergens/edit_allergens_widget.dart'
+    show EditAllergensWidget;
 export '/pages/meals/scan_food/scan_food_widget.dart' show ScanFoodWidget;
-export '/pages/ingrediients/ingrediients_widget.dart' show IngrediientsWidget;
+export '/pages/meals/ingredients/ingredients_widget.dart'
+    show IngredientsWidget;
+export '/pages/meals/add_ingredient/add_ingredient_widget.dart'
+    show AddIngredientWidget;
+export '/pages/profile/edit_disliked/edit_disliked_widget.dart'
+    show EditDislikedWidget;

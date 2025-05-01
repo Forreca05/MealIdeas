@@ -11,6 +11,7 @@ import 'schema/onboarding_options_record.dart';
 import 'schema/company_information_record.dart';
 import 'schema/feedback_record.dart';
 import 'schema/support_center_record.dart';
+import 'schema/ingredients_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -25,6 +26,7 @@ export 'schema/onboarding_options_record.dart';
 export 'schema/company_information_record.dart';
 export 'schema/feedback_record.dart';
 export 'schema/support_center_record.dart';
+export 'schema/ingredients_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -243,6 +245,43 @@ Future<List<SupportCenterRecord>> querySupportCenterRecordOnce({
     queryCollectionOnce(
       SupportCenterRecord.collection,
       SupportCenterRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query IngredientsRecords (as a Stream and as a Future).
+Future<int> queryIngredientsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      IngredientsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<IngredientsRecord>> queryIngredientsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      IngredientsRecord.collection,
+      IngredientsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<IngredientsRecord>> queryIngredientsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      IngredientsRecord.collection,
+      IngredientsRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

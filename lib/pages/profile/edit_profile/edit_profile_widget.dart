@@ -1,4 +1,3 @@
-import '';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/custom_appbar_widget.dart';
@@ -11,6 +10,7 @@ import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'edit_profile_model.dart';
@@ -37,8 +37,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     _model = createModel(context, () => EditProfileModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'EditProfile'});
-    _model.fullNameTextController ??=
-        TextEditingController(text: currentUserDisplayName);
+    _model.fullNameTextController ??= TextEditingController(
+        text: valueOrDefault<String>(
+      FFAppState().userName,
+      'Username...',
+    ));
     _model.fullNameFocusNode ??= FocusNode();
 
     _model.emailAddressTextController ??=
@@ -57,6 +60,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -76,27 +81,40 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  wrapWithModel(
-                    model: _model.customAppbarModel,
-                    updateCallback: () => safeSetState(() {}),
-                    child: CustomAppbarWidget(
-                      backButton: true,
-                      actionButton: true,
-                      actionButtonText: 'Save',
-                      actionButtonAction: () async {
-                        logFirebaseEvent(
-                            'EDIT_PROFILE_Container_or1jni5i_CALLBACK');
-                        logFirebaseEvent('customAppbar_backend_call');
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      logFirebaseEvent(
+                          'EDIT_PROFILE_Container_or1jni5i_ON_TAP');
+                      logFirebaseEvent('customAppbar_navigate_to');
 
-                        await currentUserReference!
-                            .update(createUsersRecordData(
-                          displayName: _model.fullNameTextController.text,
-                        ));
-                        logFirebaseEvent('customAppbar_update_page_state');
-                        _model.unsavedChanges = false;
-                        safeSetState(() {});
-                      },
-                      optionsButtonAction: () async {},
+                      context.pushNamed(ProfileWidget.routeName);
+                    },
+                    child: wrapWithModel(
+                      model: _model.customAppbarModel,
+                      updateCallback: () => safeSetState(() {}),
+                      child: CustomAppbarWidget(
+                        backButton: true,
+                        actionButton: true,
+                        actionButtonText: 'Save',
+                        actionButtonAction: () async {
+                          logFirebaseEvent(
+                              'EDIT_PROFILE_Container_or1jni5i_CALLBACK');
+                          logFirebaseEvent('customAppbar_backend_call');
+
+                          await currentUserReference!
+                              .update(createUsersRecordData(
+                            displayName: _model.fullNameTextController.text,
+                          ));
+                          logFirebaseEvent('customAppbar_update_page_state');
+                          _model.unsavedChanges = false;
+                          safeSetState(() {});
+                        },
+                        optionsButtonAction: () async {},
+                      ),
                     ),
                   ),
                   Padding(
@@ -105,8 +123,21 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     child: Text(
                       'Edit Profile',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Inter',
+                            font: GoogleFonts.inter(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .displaySmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .displaySmall
+                                  .fontStyle,
+                            ),
                             letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .fontStyle,
                           ),
                     ),
                   ),
@@ -125,91 +156,186 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 4.0),
                               child: Text(
-                                'Full Name',
+                                'Username',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Inter',
+                                      font: GoogleFonts.inter(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .fontStyle,
                                     ),
                               ),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 4.0, 0.0, 0.0),
-                              child: AuthUserStreamWidget(
-                                builder: (context) => TextFormField(
-                                  controller: _model.fullNameTextController,
-                                  focusNode: _model.fullNameFocusNode,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    '_model.fullNameTextController',
-                                    Duration(milliseconds: 2000),
-                                    () async {
-                                      logFirebaseEvent(
-                                          'EDIT_PROFILE_fullName_ON_TEXTFIELD_CHANG');
-                                      logFirebaseEvent(
-                                          'fullName_update_page_state');
-                                      _model.unsavedChanges = true;
-                                      safeSetState(() {});
-                                    },
+                              child: TextFormField(
+                                controller: _model.fullNameTextController,
+                                focusNode: _model.fullNameFocusNode,
+                                onChanged: (_) => EasyDebounce.debounce(
+                                  '_model.fullNameTextController',
+                                  Duration(milliseconds: 2000),
+                                  () async {
+                                    logFirebaseEvent(
+                                        'EDIT_PROFILE_fullName_ON_TEXTFIELD_CHANG');
+                                    logFirebaseEvent(
+                                        'fullName_update_page_state');
+                                    _model.unsavedChanges = true;
+                                    safeSetState(() {});
+                                  },
+                                ),
+                                autofocus: false,
+                                autofillHints: [AutofillHints.name],
+                                textCapitalization: TextCapitalization.words,
+                                textInputAction: TextInputAction.next,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  autofocus: false,
-                                  autofillHints: [AutofillHints.name],
-                                  textCapitalization: TextCapitalization.words,
-                                  textInputAction: TextInputAction.next,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 1.0,
                                     ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.inter(
                                         fontWeight: FontWeight.w500,
-                                        lineHeight: 1.0,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
-                                  minLines: 1,
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  validator: _model
-                                      .fullNameTextControllerValidator
-                                      .asValidator(context),
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                      lineHeight: 1.0,
+                                    ),
+                                minLines: 1,
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                validator: _model
+                                    .fullNameTextControllerValidator
+                                    .asValidator(context),
+                                inputFormatters: [
+                                  if (!isAndroid && !isiOS)
+                                    TextInputFormatter.withFunction(
+                                        (oldValue, newValue) {
+                                      return TextEditingValue(
+                                        selection: newValue.selection,
+                                        text: newValue.text.toCapitalization(
+                                            TextCapitalization.words),
+                                      );
+                                    }),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: wrapWithModel(
+                                model: _model.titleWithSubtitleModel1,
+                                updateCallback: () => safeSetState(() {}),
+                                child: TitleWithSubtitleWidget(
+                                  title: 'Change Username',
+                                  subtitle:
+                                      'Click here to update your username. Make it fun!',
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 12.0, 0.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    logFirebaseEvent(
+                                        'EDIT_PROFILE_SET_NEW_USERNAME_BTN_ON_TAP');
+                                    // Set new username
+                                    logFirebaseEvent('Button_update_app_state');
+                                    FFAppState().userName =
+                                        _model.fullNameTextController.text;
+                                    safeSetState(() {});
+                                  },
+                                  text: 'Set new Username',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 50.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                    elevation: 0.0,
+                                    borderSide: BorderSide(
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(25.0),
+                                  ),
                                 ),
                               ),
                             ),
@@ -217,64 +343,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         ),
                       ),
                     ],
-                  ),
-                  wrapWithModel(
-                    model: _model.titleWithSubtitleModel1,
-                    updateCallback: () => safeSetState(() {}),
-                    child: TitleWithSubtitleWidget(
-                      title: 'Reset Password',
-                      subtitle:
-                          'Recieve a link via email to reset your password.',
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent(
-                            'EDIT_PROFILE_RESET_PASSWORD_BTN_ON_TAP');
-                        logFirebaseEvent('Button_auth');
-                        if (_model.emailAddressTextController.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Email required!',
-                              ),
-                            ),
-                          );
-                          return;
-                        }
-                        await authManager.resetPassword(
-                          email: _model.emailAddressTextController.text,
-                          context: context,
-                        );
-                      },
-                      text: 'Reset Password',
-                      options: FFButtonOptions(
-                        width: double.infinity,
-                        height: 50.0,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Inter',
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                        elevation: 0.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                    ),
                   ),
                   wrapWithModel(
                     model: _model.titleWithSubtitleModel2,
@@ -317,10 +385,18 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         color: Color(0xFFFFD4D4),
                         textStyle:
                             FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   color: Color(0xFFB74D4D),
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                         elevation: 0.0,
                         borderSide: BorderSide(
@@ -346,16 +422,33 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       focusedErrorBorder: InputBorder.none,
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Inter',
+                          font: GoogleFonts.inter(
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           color: FlutterFlowTheme.of(context).primaryBackground,
                           fontSize: 1.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w500,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                           lineHeight: 1.0,
                         ),
                     minLines: 1,
                     validator: _model.emailAddressTextControllerValidator
                         .asValidator(context),
+                    inputFormatters: [
+                      if (!isAndroid && !isiOS)
+                        TextInputFormatter.withFunction((oldValue, newValue) {
+                          return TextEditingValue(
+                            selection: newValue.selection,
+                            text: newValue.text
+                                .toCapitalization(TextCapitalization.words),
+                          );
+                        }),
+                    ],
                   ),
                 ],
               ),

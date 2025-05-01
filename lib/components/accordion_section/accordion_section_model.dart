@@ -1,4 +1,3 @@
-import '';
 import '/backend/backend.dart';
 import '/components/accordion_widget.dart';
 import '/components/empty_state/empty_state_widget.dart';

@@ -24,3 +24,33 @@ String returnProfileGreeting(DateTime timestamp) {
     return "Goodnight,";
   }
 }
+
+int daysUntilExpiration(DateTime expirationDate) {
+  final now = DateTime.now();
+  final difference = expirationDate.difference(now);
+  return difference.inDays;
+}
+
+Color getIngredientBackgroundColor(DateTime expirationDate) {
+  final now = DateTime.now();
+  final daysLeft = expirationDate.difference(now).inDays;
+
+  if (daysLeft <= 3) {
+    return const Color(0xFF8B0000); // dark red
+  } else {
+    return const Color(0xFF1E1E1E); // normal background
+  }
+}
+
+String getExpirationText(DateTime expirationDate) {
+  final now = DateTime.now();
+  final daysLeft = expirationDate.difference(now).inDays;
+
+  if (daysLeft > 0) {
+    return '$daysLeft day${daysLeft == 1 ? '' : 's'} to expire';
+  } else if (daysLeft == 0) {
+    return 'Expires today';
+  } else {
+    return 'Expired';
+  }
+}

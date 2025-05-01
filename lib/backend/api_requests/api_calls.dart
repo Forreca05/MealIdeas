@@ -42,6 +42,25 @@ class BarcodeCallCall {
       ));
 }
 
+class GetFoodInforCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'get food infor',
+      apiUrl:
+          'https://world.openfoodfacts.net/api/v2/product/8723400945246?fields=product_name',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

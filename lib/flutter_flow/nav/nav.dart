@@ -155,9 +155,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => XForgotPasswordWidget(),
             ),
             FFRoute(
-              name: EditPreferencesWidget.routeName,
-              path: EditPreferencesWidget.routePath,
-              builder: (context, params) => EditPreferencesWidget(
+              name: EditAllergensWidget.routeName,
+              path: EditAllergensWidget.routePath,
+              builder: (context, params) => EditAllergensWidget(
                 page: params.getParam(
                   'page',
                   ParamType.int,
@@ -170,9 +170,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ScanFoodWidget(),
             ),
             FFRoute(
-              name: IngrediientsWidget.routeName,
-              path: IngrediientsWidget.routePath,
-              builder: (context, params) => IngrediientsWidget(),
+              name: IngredientsWidget.routeName,
+              path: IngredientsWidget.routePath,
+              builder: (context, params) => IngredientsWidget(),
+            ),
+            FFRoute(
+              name: AddIngredientWidget.routeName,
+              path: AddIngredientWidget.routePath,
+              builder: (context, params) => AddIngredientWidget(),
+            ),
+            FFRoute(
+              name: EditDislikedWidget.routeName,
+              path: EditDislikedWidget.routePath,
+              builder: (context, params) => EditDislikedWidget(
+                page: params.getParam(
+                  'page',
+                  ParamType.int,
+                ),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
@@ -367,7 +382,7 @@ class FFRoute {
                     child: Image.asset(
                       'assets/images/MealPlanner_Rounded.png',
                       width: 175.0,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 )
