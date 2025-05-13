@@ -32,10 +32,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   late TitleWithSubtitleModel titleWithSubtitleModel1;
   // Model for titleWithSubtitle component.
   late TitleWithSubtitleModel titleWithSubtitleModel2;
-  // State field(s) for emailAddress widget.
-  FocusNode? emailAddressFocusNode;
-  TextEditingController? emailAddressTextController;
-  String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
@@ -54,7 +50,5 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
     titleWithSubtitleModel1.dispose();
     titleWithSubtitleModel2.dispose();
-    emailAddressFocusNode?.dispose();
-    emailAddressTextController?.dispose();
   }
 }

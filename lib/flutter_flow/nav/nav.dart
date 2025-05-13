@@ -188,6 +188,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   ParamType.int,
                 ),
               ),
+            ),
+            FFRoute(
+              name: CreateAccountWidget.routeName,
+              path: CreateAccountWidget.routePath,
+              builder: (context, params) => CreateAccountWidget(),
+            ),
+            FFRoute(
+              name: LogInAccountWidget.routeName,
+              path: LogInAccountWidget.routePath,
+              builder: (context, params) => LogInAccountWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

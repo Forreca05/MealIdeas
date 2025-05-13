@@ -30,22 +30,7 @@ class FFAppState extends ChangeNotifier {
               _userIngredientDislikes;
     });
     _safeInit(() {
-      _userName = prefs.getString('ff_userName') ?? _userName;
-    });
-    _safeInit(() {
-      _Ingredients = prefs
-              .getStringList('ff_Ingredients')
-              ?.map((x) {
-                try {
-                  return InfoProductStruct.fromSerializableMap(jsonDecode(x));
-                } catch (e) {
-                  print("Can't decode persisted data type. Error: $e.");
-                  return null;
-                }
-              })
-              .withoutNulls
-              .toList() ??
-          _Ingredients;
+      _user = prefs.getString('ff_user')?.ref ?? _user;
     });
   }
 
@@ -55,12 +40,6 @@ class FFAppState extends ChangeNotifier {
   }
 
   late SharedPreferences prefs;
-
-  String _userDiet = '';
-  String get userDiet => _userDiet;
-  set userDiet(String value) {
-    _userDiet = value;
-  }
 
   List<String> _userAllergens = [];
   List<String> get userAllergens => _userAllergens;
@@ -132,58 +111,13 @@ class FFAppState extends ChangeNotifier {
     prefs.setStringList('ff_userIngredientDislikes', _userIngredientDislikes);
   }
 
-  String _userName = 'Guest';
-  String get userName => _userName;
-  set userName(String value) {
-    _userName = value;
-    prefs.setString('ff_userName', value);
-  }
-
-  List<InfoProductStruct> _Ingredients = [];
-  List<InfoProductStruct> get Ingredients => _Ingredients;
-  set Ingredients(List<InfoProductStruct> value) {
-    _Ingredients = value;
-    prefs.setStringList(
-        'ff_Ingredients', value.map((x) => x.serialize()).toList());
-  }
-
-  void addToIngredients(InfoProductStruct value) {
-    Ingredients.add(value);
-    prefs.setStringList(
-        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
-  }
-
-  void removeFromIngredients(InfoProductStruct value) {
-    Ingredients.remove(value);
-    prefs.setStringList(
-        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
-  }
-
-  void removeAtIndexFromIngredients(int index) {
-    Ingredients.removeAt(index);
-    prefs.setStringList(
-        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
-  }
-
-  void updateIngredientsAtIndex(
-    int index,
-    InfoProductStruct Function(InfoProductStruct) updateFn,
-  ) {
-    Ingredients[index] = updateFn(_Ingredients[index]);
-    prefs.setStringList(
-        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
-  }
-
-  void insertAtIndexInIngredients(int index, InfoProductStruct value) {
-    Ingredients.insert(index, value);
-    prefs.setStringList(
-        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
-  }
-
-  String _ingredientNameLowercased = '';
-  String get ingredientNameLowercased => _ingredientNameLowercased;
-  set ingredientNameLowercased(String value) {
-    _ingredientNameLowercased = value;
+  DocumentReference? _user;
+  DocumentReference? get user => _user;
+  set user(DocumentReference? value) {
+    _user = value;
+    value != null
+        ? prefs.setString('ff_user', value.path)
+        : prefs.remove('ff_user');
   }
 }
 

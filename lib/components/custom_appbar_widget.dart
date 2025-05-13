@@ -1,10 +1,8 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'custom_appbar_model.dart';
@@ -81,66 +79,6 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
               context.safePop();
             },
           ),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            if (widget!.actionButton)
-              FFButtonWidget(
-                onPressed: () async {
-                  logFirebaseEvent('CUSTOM_APPBAR_COMP_SAVE_BTN_ON_TAP');
-                  logFirebaseEvent('Button_execute_callback');
-                  await widget.actionButtonAction?.call();
-                },
-                text: valueOrDefault<String>(
-                  widget!.actionButtonText,
-                  'Button',
-                ),
-                options: FFButtonOptions(
-                  height: 44.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.inter(
-                          fontWeight: FontWeight.w600,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w600,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                  elevation: 0.0,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
-              ),
-            if (widget!.optionsButton)
-              FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).secondaryBackground,
-                borderRadius: 24.0,
-                borderWidth: 1.0,
-                buttonSize: 44.0,
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                icon: FaIcon(
-                  FontAwesomeIcons.ellipsisH,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 18.0,
-                ),
-                onPressed: () async {
-                  logFirebaseEvent('CUSTOM_APPBAR_COMP_ellipsisH_ICN_ON_TAP');
-                  logFirebaseEvent('IconButton_execute_callback');
-                  await widget.optionsButtonAction?.call();
-                },
-              ),
-          ].divide(SizedBox(width: 8.0)),
-        ),
         FlutterFlowIconButton(
           borderColor: FlutterFlowTheme.of(context).secondaryBackground,
           borderRadius: 24.0,

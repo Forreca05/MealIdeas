@@ -77,24 +77,48 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      Text(
+                        'Add a new ingredient',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                      ),
                       Align(
                         alignment: AlignmentDirectional(1.0, 0.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            logFirebaseEvent(
-                                'DASHBOARD_PAGE_Icon_74yadp57_ON_TAP');
-                            logFirebaseEvent('Icon_navigate_to');
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 10.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              logFirebaseEvent(
+                                  'DASHBOARD_PAGE_Icon_74yadp57_ON_TAP');
+                              logFirebaseEvent('Icon_navigate_to');
 
-                            context.pushNamed(ScanFoodWidget.routeName);
-                          },
-                          child: Icon(
-                            Icons.qr_code,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 40.0,
+                              context.pushNamed(ScanFoodWidget.routeName);
+                            },
+                            child: Icon(
+                              Icons.qr_code_scanner,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 40.0,
+                            ),
                           ),
                         ),
                       ),

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -52,8 +53,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -108,15 +107,21 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 ),
                           ),
                         ),
-                        Text(
-                          valueOrDefault<String>(
-                            FFAppState().userName,
-                            'Guest',
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .override(
-                                font: GoogleFonts.inter(
+                        AuthUserStreamWidget(
+                          builder: (context) => Text(
+                            currentUserDisplayName,
+                            style: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displaySmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displaySmall
+                                        .fontStyle,
+                                  ),
+                                  letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .displaySmall
                                       .fontWeight,
@@ -124,14 +129,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       .displaySmall
                                       .fontStyle,
                                 ),
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .displaySmall
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .displaySmall
-                                    .fontStyle,
-                              ),
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -659,7 +657,91 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ],
                                     ),
                                   ),
+                                  Divider(
+                                    thickness: 1.0,
+                                    color: FlutterFlowTheme.of(context).accent4,
+                                  ),
                                 ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            logFirebaseEvent('PROFILE_PAGE_LogOutTile_ON_TAP');
+                            logFirebaseEvent('LogOutTile_auth');
+                            GoRouter.of(context).prepareAuthEvent();
+                            await authManager.signOut();
+                            GoRouter.of(context).clearRedirectLocation();
+
+                            logFirebaseEvent('LogOutTile_navigate_to');
+
+                            context.pushNamedAuth(
+                                LogInAccountWidget.routeName, context.mounted);
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 12.0, 0.0, 12.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Container(
+                                      width: 40.0,
+                                      height: 40.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent1,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(4.0),
+                                        child: Icon(
+                                          Icons.logout,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          18.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Log out',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),

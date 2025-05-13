@@ -26,20 +26,10 @@ class UsersRecord extends FirestoreRecord {
   String get displayName => _displayName ?? '';
   bool hasDisplayName() => _displayName != null;
 
-  // "photo_url" field.
-  String? _photoUrl;
-  String get photoUrl => _photoUrl ?? '';
-  bool hasPhotoUrl() => _photoUrl != null;
-
   // "uid" field.
   String? _uid;
   String get uid => _uid ?? '';
   bool hasUid() => _uid != null;
-
-  // "created_time" field.
-  DateTime? _createdTime;
-  DateTime? get createdTime => _createdTime;
-  bool hasCreatedTime() => _createdTime != null;
 
   // "phone_number" field.
   String? _phoneNumber;
@@ -61,16 +51,26 @@ class UsersRecord extends FirestoreRecord {
   List<String> get ingredientDislikes => _ingredientDislikes ?? const [];
   bool hasIngredientDislikes() => _ingredientDislikes != null;
 
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
+  // "photo_url" field.
+  String? _photoUrl;
+  String get photoUrl => _photoUrl ?? '';
+  bool hasPhotoUrl() => _photoUrl != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
-    _photoUrl = snapshotData['photo_url'] as String?;
     _uid = snapshotData['uid'] as String?;
-    _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _diet = snapshotData['diet'] as String?;
     _allergens = getDataList(snapshotData['allergens']);
     _ingredientDislikes = getDataList(snapshotData['ingredient_dislikes']);
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _photoUrl = snapshotData['photo_url'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -109,21 +109,21 @@ class UsersRecord extends FirestoreRecord {
 Map<String, dynamic> createUsersRecordData({
   String? email,
   String? displayName,
-  String? photoUrl,
   String? uid,
-  DateTime? createdTime,
   String? phoneNumber,
   String? diet,
+  DateTime? createdTime,
+  String? photoUrl,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'email': email,
       'display_name': displayName,
-      'photo_url': photoUrl,
       'uid': uid,
-      'created_time': createdTime,
       'phone_number': phoneNumber,
       'diet': diet,
+      'created_time': createdTime,
+      'photo_url': photoUrl,
     }.withoutNulls,
   );
 
@@ -138,26 +138,26 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
     const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
-        e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
-        e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.diet == e2?.diet &&
         listEquality.equals(e1?.allergens, e2?.allergens) &&
-        listEquality.equals(e1?.ingredientDislikes, e2?.ingredientDislikes);
+        listEquality.equals(e1?.ingredientDislikes, e2?.ingredientDislikes) &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.photoUrl == e2?.photoUrl;
   }
 
   @override
   int hash(UsersRecord? e) => const ListEquality().hash([
         e?.email,
         e?.displayName,
-        e?.photoUrl,
         e?.uid,
-        e?.createdTime,
         e?.phoneNumber,
         e?.diet,
         e?.allergens,
-        e?.ingredientDislikes
+        e?.ingredientDislikes,
+        e?.createdTime,
+        e?.photoUrl
       ]);
 
   @override

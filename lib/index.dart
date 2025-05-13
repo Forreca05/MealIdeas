@@ -24,3 +24,7 @@ export '/pages/meals/add_ingredient/add_ingredient_widget.dart'
     show AddIngredientWidget;
 export '/pages/profile/edit_disliked/edit_disliked_widget.dart'
     show EditDislikedWidget;
+export '/pages/onboarding/create_account/create_account_widget.dart'
+    show CreateAccountWidget;
+export '/pages/onboarding/log_in_account/log_in_account_widget.dart'
+    show LogInAccountWidget;

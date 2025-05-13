@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -116,13 +115,7 @@ class _AddIngredientWidgetState extends State<AddIngredientWidget> {
                   onPressed: () async {
                     logFirebaseEvent('ADD_INGREDIENT_PAGE_submit_ON_TAP');
                     logFirebaseEvent('submit_update_app_state');
-                    FFAppState().addToIngredients(InfoProductStruct(
-                      nome: _model.ingNameTextController.text,
-                      quatidade:
-                          int.tryParse(_model.quantityTextController.text),
-                      validade: _model.datePicked?.secondsSinceEpoch,
-                      existe: true,
-                    ));
+
                     safeSetState(() {});
                     logFirebaseEvent('submit_navigate_back');
                     context.safePop();
