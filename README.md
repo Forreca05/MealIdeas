@@ -25,6 +25,7 @@ This Software Development Report, tailored for LEIC-ES-2024-25, provides compreh
     - [Sprint 1](#sprint-1)
     - [Sprint 2](#sprint-2)
     - [Sprint 3](#sprint-3)
+    - [Board at the Begining of Sprint 3](#board-at-the-begining-of-sprint-3)
     - [Final Release](#final-release)
 
 Contributions are expected to be made exclusively by the initial team, but we may open them to the community, after the course, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
@@ -289,7 +290,7 @@ You can find below information and references related with the project managemen
 
 - **Backlog Management**: [GitHub Project Board](https://github.com/orgs/LEIC-ES-2024-25/projects/27)
 - **Release Management**: 
-  [Sprint 0](https://github.com/LEIC-ES-2024-25/2LEIC03T1/releases/tag/v0) - [Sprint 1]() - [Sprint2]() - [Sprint 3]()
+  [Sprint 0](https://github.com/LEIC-ES-2024-25/2LEIC03T1/releases/tag/v0) - [Sprint 1]() - [Sprint2](https://github.com/LEIC-ES-2024-25/2LEIC03T1/releases/tag/v2.0.0) - [Sprint 3](https://github.com/LEIC-ES-2024-25/2LEIC03T1/releases/tag/v3)
 
 
 ### Sprint 0
@@ -320,6 +321,8 @@ Despite completing our original sprint goals, we came out of it wishing we had b
 > ### Board at the Begining of Sprint 2
 <img src="img/Sprint2BoardBeg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
+<br>
+
 During Sprint 2, the team focused on delivering several user-focused and structural features. Key progress was made on implementing support for disliked foods and allergies, manual ingredient entry, and navigation between screens. Other completed features included the ingredient scanning functionality, the onboarding/start page, user profile setup, and expiry notifications for stored items—laying important groundwork for the application.
 
 One planned task—connecting ingredients with the inventory system—was scheduled for this sprint but was not achieved within the time frame. This will be carried forward and prioritized in the upcoming sprint.
@@ -329,16 +332,49 @@ For Sprint 3, the focus turns to recipe functionality and system integration. Pl
 As this is the final sprint, the team is focused in finishing every feature that was promissed in the begining, making the app more usable and clean and adding more functionalities if possible.
 
 > ### Board at the End of Sprint 2
-
 <img src="img/Sprint2BoardEnd.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
 ### Sprint 3
 
-> ### Board at the Begining of Sprint 3
+ ### Board at the Begining of Sprint 3
 <img src="img/Sprint3BoardBeg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+
+<br>
+
+**What we completed**
+
+- Recipe logic  
+- Ingredient-to-inventory connection  
+- API integration with ingredients  
+
+**What went well**
+
+- We accomplished everything we planned  
+- Clear and effective task distribution  
+- All initial user stories were successfully completed  
+- Effective use of pair programming, which boosted group productivity  
+
+**What could have gone better**
+
+- More frequent meetings and better coordination would have helped
+
+
+> ### Board at the End of Sprint 3
+<img src="img/Sprint3BoardEnd.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
 
 
 ### Final Release
+<img src="img/FinalRelease.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+
+<br>
+
+Over the course of the four sprints, the team showed consistent growth both technically and organizationally. We started with a basic structure and gradually developed more complex features, such as food scanning, user profile management, expiry notifications, and personalized recipe suggestions.
+
+Agile practices were well adopted, with strong organization via GitHub Projects, consistent achievement of sprint goals, and continuous process improvement. The use of pair programming, along with clear task division, played a key role in maintaining high productivity.
+
+Despite minor challenges related to coordination and scheduling, the project met all key milestones. The final application is functional, cohesive, and stands as a solid representation of the team’s collaborative effort, with real potential for use in everyday food management.
+
+We look forward to the opportunity to bring this app into real-world use.
 
 
