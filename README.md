@@ -321,8 +321,6 @@ Despite completing our original sprint goals, we came out of it wishing we had b
 > ### Board at the Begining of Sprint 2
 <img src="img/Sprint2BoardBeg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
-<br>
-
 During Sprint 2, the team focused on delivering several user-focused and structural features. Key progress was made on implementing support for disliked foods and allergies, manual ingredient entry, and navigation between screens. Other completed features included the ingredient scanning functionality, the onboarding/start page, user profile setup, and expiry notifications for stored items—laying important groundwork for the application.
 
 One planned task—connecting ingredients with the inventory system—was scheduled for this sprint but was not achieved within the time frame. This will be carried forward and prioritized in the upcoming sprint.
@@ -339,8 +337,6 @@ As this is the final sprint, the team is focused in finishing every feature that
  ### Board at the Begining of Sprint 3
 <img src="img/Sprint3BoardBeg.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
 
-<br>
-
 **What we completed**
 
 - Recipe logic  
@@ -351,12 +347,13 @@ As this is the final sprint, the team is focused in finishing every feature that
 
 - We accomplished everything we planned  
 - Clear and effective task distribution  
-- All initial user stories were successfully completed  
+- All initial user stories apart from the "Share Recipes" were successfully completed  
 - Effective use of pair programming, which boosted group productivity  
 
 **What could have gone better**
 
 - More frequent meetings and better coordination would have helped
+- We were not able to do an user storie due to not having the necessary tools to do that
 
 
 > ### Board at the End of Sprint 3
@@ -366,8 +363,6 @@ As this is the final sprint, the team is focused in finishing every feature that
 
 ### Final Release
 <img src="img/FinalRelease.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
-
-<br>
 
 Over the course of the four sprints, the team showed consistent growth both technically and organizationally. We started with a basic structure and gradually developed more complex features, such as food scanning, user profile management, expiry notifications, and personalized recipe suggestions.
 
