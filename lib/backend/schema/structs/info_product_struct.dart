@@ -13,18 +13,14 @@ class InfoProductStruct extends FFFirebaseStruct {
     String? nome,
 
     /// Quantidade do produto
-    int? quatidade,
+    String? quatidade,
 
     /// Em dias
-    int? validade,
-
-    /// If the person as the product
-    bool? existe,
+    DateTime? validade,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _nome = nome,
         _quatidade = quatidade,
         _validade = validade,
-        _existe = existe,
         super(firestoreUtilData);
 
   // "Nome" field.
@@ -35,36 +31,24 @@ class InfoProductStruct extends FFFirebaseStruct {
   bool hasNome() => _nome != null;
 
   // "Quatidade" field.
-  int? _quatidade;
-  int get quatidade => _quatidade ?? 0;
-  set quatidade(int? val) => _quatidade = val;
-
-  void incrementQuatidade(int amount) => quatidade = quatidade + amount;
+  String? _quatidade;
+  String get quatidade => _quatidade ?? '';
+  set quatidade(String? val) => _quatidade = val;
 
   bool hasQuatidade() => _quatidade != null;
 
   // "Validade" field.
-  int? _validade;
-  int get validade => _validade ?? 0;
-  set validade(int? val) => _validade = val;
-
-  void incrementValidade(int amount) => validade = validade + amount;
+  DateTime? _validade;
+  DateTime? get validade => _validade;
+  set validade(DateTime? val) => _validade = val;
 
   bool hasValidade() => _validade != null;
-
-  // "Existe" field.
-  bool? _existe;
-  bool get existe => _existe ?? false;
-  set existe(bool? val) => _existe = val;
-
-  bool hasExiste() => _existe != null;
 
   static InfoProductStruct fromMap(Map<String, dynamic> data) =>
       InfoProductStruct(
         nome: data['Nome'] as String?,
-        quatidade: castToType<int>(data['Quatidade']),
-        validade: castToType<int>(data['Validade']),
-        existe: data['Existe'] as bool?,
+        quatidade: data['Quatidade'] as String?,
+        validade: data['Validade'] as DateTime?,
       );
 
   static InfoProductStruct? maybeFromMap(dynamic data) => data is Map
@@ -75,7 +59,6 @@ class InfoProductStruct extends FFFirebaseStruct {
         'Nome': _nome,
         'Quatidade': _quatidade,
         'Validade': _validade,
-        'Existe': _existe,
       }.withoutNulls;
 
   @override
@@ -86,15 +69,11 @@ class InfoProductStruct extends FFFirebaseStruct {
         ),
         'Quatidade': serializeParam(
           _quatidade,
-          ParamType.int,
+          ParamType.String,
         ),
         'Validade': serializeParam(
           _validade,
-          ParamType.int,
-        ),
-        'Existe': serializeParam(
-          _existe,
-          ParamType.bool,
+          ParamType.DateTime,
         ),
       }.withoutNulls;
 
@@ -107,17 +86,12 @@ class InfoProductStruct extends FFFirebaseStruct {
         ),
         quatidade: deserializeParam(
           data['Quatidade'],
-          ParamType.int,
+          ParamType.String,
           false,
         ),
         validade: deserializeParam(
           data['Validade'],
-          ParamType.int,
-          false,
-        ),
-        existe: deserializeParam(
-          data['Existe'],
-          ParamType.bool,
+          ParamType.DateTime,
           false,
         ),
       );
@@ -130,20 +104,17 @@ class InfoProductStruct extends FFFirebaseStruct {
     return other is InfoProductStruct &&
         nome == other.nome &&
         quatidade == other.quatidade &&
-        validade == other.validade &&
-        existe == other.existe;
+        validade == other.validade;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([nome, quatidade, validade, existe]);
+  int get hashCode => const ListEquality().hash([nome, quatidade, validade]);
 }
 
 InfoProductStruct createInfoProductStruct({
   String? nome,
-  int? quatidade,
-  int? validade,
-  bool? existe,
+  String? quatidade,
+  DateTime? validade,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -153,7 +124,6 @@ InfoProductStruct createInfoProductStruct({
       nome: nome,
       quatidade: quatidade,
       validade: validade,
-      existe: existe,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

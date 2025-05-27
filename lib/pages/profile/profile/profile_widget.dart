@@ -109,6 +109,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         ),
                         AuthUserStreamWidget(
                           builder: (context) => Text(
+                            key: ValueKey('displayNameText_3ipn'),
                             currentUserDisplayName,
                             style: FlutterFlowTheme.of(context)
                                 .displaySmall
@@ -252,6 +253,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               EditProfileWidget.routeName);
                                         },
                                         child: Row(
+                                          key: ValueKey('Row_bzgk'),
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Container(

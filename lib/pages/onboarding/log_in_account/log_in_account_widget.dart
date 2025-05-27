@@ -1,5 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
+import '/components/custom_appbar_widget.dart';
 import '/components/title_with_subtitle/title_with_subtitle_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -74,6 +74,17 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  wrapWithModel(
+                    model: _model.customAppbarModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: CustomAppbarWidget(
+                      backButton: true,
+                      actionButton: false,
+                      optionsButton: false,
+                      actionButtonAction: () async {},
+                      optionsButtonAction: () async {},
+                    ),
+                  ),
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
@@ -143,6 +154,7 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                       textInputAction: TextInputAction.next,
                       obscureText: false,
                       decoration: InputDecoration(
+                        labelText: 'Email...',
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context)
@@ -209,7 +221,7 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 4.0),
                     child: Text(
                       'Password',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -221,6 +233,7 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                                   .bodyMedium
                                   .fontStyle,
                             ),
+                            fontSize: 16.0,
                             letterSpacing: 0.0,
                             fontWeight: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -248,8 +261,9 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                     autofocus: false,
                     textCapitalization: TextCapitalization.none,
                     textInputAction: TextInputAction.next,
-                    obscureText: false,
+                    obscureText: !_model.passwordVisibility,
                     decoration: InputDecoration(
+                      labelText: 'Password...',
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).alternate,
@@ -281,6 +295,20 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
+                      suffixIcon: InkWell(
+                        onTap: () => safeSetState(
+                          () => _model.passwordVisibility =
+                              !_model.passwordVisibility,
+                        ),
+                        focusNode: FocusNode(skipTraversal: true),
+                        child: Icon(
+                          _model.passwordVisibility
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: Color(0xFF757575),
+                          size: 22.0,
+                        ),
+                      ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           font: GoogleFonts.inter(
@@ -296,7 +324,6 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                               FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                           lineHeight: 1.0,
                         ),
-                    minLines: 1,
                     cursorColor: FlutterFlowTheme.of(context).primary,
                     validator: _model.passwordTextControllerValidator
                         .asValidator(context),
@@ -312,81 +339,53 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                     ],
                   ),
                   Expanded(
-                    child: wrapWithModel(
-                      model: _model.titleWithSubtitleModel,
-                      updateCallback: () => safeSetState(() {}),
-                      child: TitleWithSubtitleWidget(
-                        title: 'Login to your Account',
-                        subtitle:
-                            'Click here to create an account and start this adventure',
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 200.0),
+                      child: wrapWithModel(
+                        model: _model.titleWithSubtitleModel,
+                        updateCallback: () => safeSetState(() {}),
+                        child: TitleWithSubtitleWidget(
+                          title: 'Login to your Account',
+                          subtitle: 'Click here to login to your account',
+                        ),
                       ),
                     ),
                   ),
                   Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
-                    child: StreamBuilder<List<UsersRecord>>(
-                      stream: queryUsersRecord(
-                        singleRecord: true,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 25.0,
-                              height: 25.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
-                          );
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'LOG_IN_ACCOUNT_PAGE_LOGIN_BTN_ON_TAP');
+                        logFirebaseEvent('Button_auth');
+                        GoRouter.of(context).prepareAuthEvent();
+
+                        final user = await authManager.signInWithEmail(
+                          context,
+                          _model.emailTextController.text,
+                          _model.passwordTextController.text,
+                        );
+                        if (user == null) {
+                          return;
                         }
-                        List<UsersRecord> buttonUsersRecordList =
-                            snapshot.data!;
-                        // Return an empty Container when the item does not exist.
-                        if (snapshot.data!.isEmpty) {
-                          return Container();
-                        }
-                        final buttonUsersRecord =
-                            buttonUsersRecordList.isNotEmpty
-                                ? buttonUsersRecordList.first
-                                : null;
 
-                        return FFButtonWidget(
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'LOG_IN_ACCOUNT_PAGE_LOGIN_BTN_ON_TAP');
-                            logFirebaseEvent('Button_auth');
-                            GoRouter.of(context).prepareAuthEvent();
+                        logFirebaseEvent('Button_navigate_to');
 
-                            final user = await authManager.signInWithEmail(
-                              context,
-                              _model.emailTextController.text,
-                              _model.passwordTextController.text,
-                            );
-                            if (user == null) {
-                              return;
-                            }
-
-                            logFirebaseEvent('Button_navigate_to');
-
-                            context.pushNamedAuth(
-                                DashboardWidget.routeName, context.mounted);
-                          },
-                          text: 'Login',
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 50.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
+                        context.pushNamedAuth(
+                            DashboardWidget.routeName, context.mounted);
+                      },
+                      text: 'Login',
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 50.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
                                   font: GoogleFonts.inter(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -403,14 +402,12 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                                       .bodyMedium
                                       .fontStyle,
                                 ),
-                            elevation: 0.0,
-                            borderSide: BorderSide(
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                        );
-                      },
+                        elevation: 0.0,
+                        borderSide: BorderSide(
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
                     ),
                   ),
                   Align(
@@ -482,7 +479,6 @@ class _LogInAccountWidgetState extends State<LogInAccountWidget> {
                       ),
                     ),
                   ),
-                  Spacer(),
                 ],
               ),
             ),

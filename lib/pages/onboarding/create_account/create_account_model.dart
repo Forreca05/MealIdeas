@@ -32,12 +32,14 @@ class CreateAccountModel extends FlutterFlowModel<CreateAccountWidget> {
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
+  late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // Model for titleWithSubtitle component.
   late TitleWithSubtitleModel titleWithSubtitleModel;
 
   @override
   void initState(BuildContext context) {
+    passwordVisibility = false;
     titleWithSubtitleModel =
         createModel(context, () => TitleWithSubtitleModel());
   }

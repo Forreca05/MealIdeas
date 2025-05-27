@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/components/custom_appbar_widget.dart';
 import '/components/empty_state/empty_state_widget.dart';
 import '/components/preference_item/preference_item_widget.dart';
@@ -6,9 +7,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -46,15 +47,7 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('EDIT_ALLERGENS_EditAllergens_ON_INIT_STA');
       logFirebaseEvent('EditAllergens_update_page_state');
-      _model.allergenSelection =
-          (currentUserDocument?.allergens?.toList() ?? [])
-              .toList()
-              .cast<String>();
-      _model.dietSelection = valueOrDefault(currentUserDocument?.diet, '');
-      _model.ingredientSelection =
-          (currentUserDocument?.ingredientDislikes?.toList() ?? [])
-              .toList()
-              .cast<String>();
+
       safeSetState(() {});
     });
 
@@ -73,8 +66,6 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -162,6 +153,7 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
                                       ),
                                     ),
                                     Row(
+                                      key: ValueKey('Row_tvaj'),
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -336,21 +328,31 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 10.0),
+                                          0.0, 20.0, 0.0, 10.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           FFButtonWidget(
+                                            key: ValueKey('Button_8etp'),
                                             onPressed: () async {
                                               logFirebaseEvent(
                                                   'EDIT_ALLERGENS_PAGE_ADD_BTN_ON_TAP');
                                               logFirebaseEvent(
-                                                  'Button_update_app_state');
-                                              FFAppState().addToUserAllergens(
-                                                  _model.textController.text);
-                                              safeSetState(() {});
+                                                  'Button_backend_call');
+
+                                              await currentUserReference!
+                                                  .update({
+                                                ...mapToFirestore(
+                                                  {
+                                                    'allergens':
+                                                        FieldValue.arrayUnion([
+                                                      _model.textController.text
+                                                    ]),
+                                                  },
+                                                ),
+                                              });
                                               logFirebaseEvent(
                                                   'Button_reset_form_fields');
                                               safeSetState(() {
@@ -359,6 +361,7 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
                                             },
                                             text: 'Add',
                                             options: FFButtonOptions(
+                                              width: 150.0,
                                               height: 40.0,
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
@@ -399,7 +402,7 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
                                                       ),
                                               elevation: 0.0,
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                           ),
                                           FFButtonWidget(
@@ -407,12 +410,19 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
                                               logFirebaseEvent(
                                                   'EDIT_ALLERGENS_PAGE_REMOVE_BTN_ON_TAP');
                                               logFirebaseEvent(
-                                                  'Button_update_app_state');
-                                              FFAppState()
-                                                  .removeFromUserAllergens(
-                                                      _model
-                                                          .textController.text);
-                                              safeSetState(() {});
+                                                  'Button_backend_call');
+
+                                              await currentUserReference!
+                                                  .update({
+                                                ...mapToFirestore(
+                                                  {
+                                                    'allergens':
+                                                        FieldValue.arrayRemove([
+                                                      _model.textController.text
+                                                    ]),
+                                                  },
+                                                ),
+                                              });
                                               logFirebaseEvent(
                                                   'Button_reset_form_fields');
                                               safeSetState(() {
@@ -421,6 +431,7 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
                                             },
                                             text: 'Remove',
                                             options: FFButtonOptions(
+                                              width: 150.0,
                                               height: 40.0,
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
@@ -461,7 +472,7 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
                                                       ),
                                               elevation: 0.0,
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                  BorderRadius.circular(24.0),
                                             ),
                                           ),
                                         ],
@@ -495,92 +506,58 @@ class _EditAllergensWidgetState extends State<EditAllergensWidget> {
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
-                                      child: Builder(
-                                        builder: (context) {
-                                          final allergens = FFAppState()
-                                              .userAllergens
-                                              .map((e) => e)
-                                              .toList();
-                                          if (allergens.isEmpty) {
-                                            return Center(
-                                              child: EmptyStateWidget(
-                                                icon: FaIcon(
-                                                  FontAwesomeIcons
-                                                      .solidSmileWink,
+                                      child: AuthUserStreamWidget(
+                                        builder: (context) => Builder(
+                                          builder: (context) {
+                                            final allergens =
+                                                (currentUserDocument?.allergens
+                                                            ?.toList() ??
+                                                        [])
+                                                    .map((e) => e)
+                                                    .toList();
+                                            if (allergens.isEmpty) {
+                                              return Center(
+                                                child: EmptyStateWidget(
+                                                  icon: FaIcon(
+                                                    FontAwesomeIcons
+                                                        .solidSmileWink,
+                                                  ),
+                                                  title: '',
+                                                  description:
+                                                      'You have no allergens at the moment',
                                                 ),
-                                                title: '',
-                                                description:
-                                                    'You have no allergens at the moment',
-                                              ),
-                                            );
-                                          }
-
-                                          return Wrap(
-                                            spacing: 8.0,
-                                            runSpacing: 8.0,
-                                            alignment: WrapAlignment.start,
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.start,
-                                            direction: Axis.horizontal,
-                                            runAlignment: WrapAlignment.start,
-                                            verticalDirection:
-                                                VerticalDirection.down,
-                                            clipBehavior: Clip.none,
-                                            children:
-                                                List.generate(allergens.length,
-                                                    (allergensIndex) {
-                                              final allergensItem =
-                                                  allergens[allergensIndex];
-                                              return PreferenceItemWidget(
-                                                key: Key(
-                                                    'Key2pp_${allergensIndex}_of_${allergens.length}'),
-                                                text: allergensItem,
-                                                selectedItems:
-                                                    _model.allergenSelection,
-                                                action: () async {
-                                                  logFirebaseEvent(
-                                                      'EDIT_ALLERGENS_Container_2pp5tbdq_CALLBA');
-                                                  if (_model.allergenSelection
-                                                      .contains(valueOrDefault<
-                                                          String>(
-                                                    allergensIndex.toString(),
-                                                    'gluten',
-                                                  ))) {
-                                                    logFirebaseEvent(
-                                                        'preferenceItem_haptic_feedback');
-                                                    HapticFeedback
-                                                        .selectionClick();
-                                                    logFirebaseEvent(
-                                                        'preferenceItem_update_page_state');
-                                                    _model
-                                                        .removeFromAllergenSelection(
-                                                            valueOrDefault<
-                                                                String>(
-                                                      allergensIndex.toString(),
-                                                      'gluten',
-                                                    ));
-                                                    safeSetState(() {});
-                                                  } else {
-                                                    logFirebaseEvent(
-                                                        'preferenceItem_haptic_feedback');
-                                                    HapticFeedback
-                                                        .selectionClick();
-                                                    logFirebaseEvent(
-                                                        'preferenceItem_update_page_state');
-                                                    _model
-                                                        .addToAllergenSelection(
-                                                            valueOrDefault<
-                                                                String>(
-                                                      allergensIndex.toString(),
-                                                      'gluten',
-                                                    ));
-                                                    safeSetState(() {});
-                                                  }
-                                                },
                                               );
-                                            }),
-                                          );
-                                        },
+                                            }
+
+                                            return Wrap(
+                                              key: ValueKey('Wrap_qjxz'),
+                                              spacing: 8.0,
+                                              runSpacing: 8.0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: List.generate(
+                                                  allergens.length,
+                                                  (allergensIndex) {
+                                                final allergensItem =
+                                                    allergens[allergensIndex];
+                                                return PreferenceItemWidget(
+                                                  key: Key(
+                                                      'Key2pp_${allergensIndex}_of_${allergens.length}'),
+                                                  text: allergensItem,
+                                                  selectedItems:
+                                                      _model.allergenSelection,
+                                                  action: () async {},
+                                                );
+                                              }),
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ],

@@ -79,21 +79,6 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
               context.safePop();
             },
           ),
-        FlutterFlowIconButton(
-          borderColor: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: 24.0,
-          borderWidth: 1.0,
-          buttonSize: 44.0,
-          fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-          icon: Icon(
-            Icons.ios_share_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
-            size: 18.0,
-          ),
-          onPressed: () {
-            print('IconButton pressed ...');
-          },
-        ),
       ],
     );
   }

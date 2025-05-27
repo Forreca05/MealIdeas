@@ -78,19 +78,22 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : SplashWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? entryPage ?? NavBarPage()
+          : SplashWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : SplashWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? entryPage ?? NavBarPage()
+              : SplashWidget(),
           routes: [
             FFRoute(
               name: SplashWidget.routeName,
@@ -112,13 +115,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: MealDetailsWidget.routeName,
               path: MealDetailsWidget.routePath,
-              asyncParams: {
-                'mealRef': getDoc(['meals'], MealsRecord.fromSnapshot),
-              },
               builder: (context, params) => MealDetailsWidget(
-                mealRef: params.getParam(
-                  'mealRef',
-                  ParamType.Document,
+                recipe: params.getParam(
+                  'recipe',
+                  ParamType.String,
                 ),
               ),
             ),

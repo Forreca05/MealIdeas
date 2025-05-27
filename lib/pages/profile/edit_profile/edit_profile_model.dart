@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/custom_appbar_widget.dart';
 import '/components/title_with_subtitle/title_with_subtitle_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -22,8 +21,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for customAppbar component.
-  late CustomAppbarModel customAppbarModel;
   // State field(s) for fullName widget.
   FocusNode? fullNameFocusNode;
   TextEditingController? fullNameTextController;
@@ -35,7 +32,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
   @override
   void initState(BuildContext context) {
-    customAppbarModel = createModel(context, () => CustomAppbarModel());
     titleWithSubtitleModel1 =
         createModel(context, () => TitleWithSubtitleModel());
     titleWithSubtitleModel2 =
@@ -44,7 +40,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
   @override
   void dispose() {
-    customAppbarModel.dispose();
     fullNameFocusNode?.dispose();
     fullNameTextController?.dispose();
 

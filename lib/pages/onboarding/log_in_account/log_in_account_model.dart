@@ -1,5 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
+import '/components/custom_appbar_widget.dart';
 import '/components/title_with_subtitle/title_with_subtitle_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -21,6 +21,8 @@ class LogInAccountModel extends FlutterFlowModel<LogInAccountWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Model for customAppbar component.
+  late CustomAppbarModel customAppbarModel;
   // State field(s) for email widget.
   FocusNode? emailFocusNode;
   TextEditingController? emailTextController;
@@ -28,18 +30,22 @@ class LogInAccountModel extends FlutterFlowModel<LogInAccountWidget> {
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
+  late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // Model for titleWithSubtitle component.
   late TitleWithSubtitleModel titleWithSubtitleModel;
 
   @override
   void initState(BuildContext context) {
+    customAppbarModel = createModel(context, () => CustomAppbarModel());
+    passwordVisibility = false;
     titleWithSubtitleModel =
         createModel(context, () => TitleWithSubtitleModel());
   }
 
   @override
   void dispose() {
+    customAppbarModel.dispose();
     emailFocusNode?.dispose();
     emailTextController?.dispose();
 

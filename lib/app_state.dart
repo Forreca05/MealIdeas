@@ -30,7 +30,34 @@ class FFAppState extends ChangeNotifier {
               _userIngredientDislikes;
     });
     _safeInit(() {
-      _user = prefs.getString('ff_user')?.ref ?? _user;
+      _Ingredients = prefs
+              .getStringList('ff_Ingredients')
+              ?.map((x) {
+                try {
+                  return InfoProductStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _Ingredients;
+    });
+    _safeInit(() {
+      _Recipes = prefs
+              .getStringList('ff_Recipes')
+              ?.map((x) {
+                try {
+                  return RecipeStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _Recipes;
     });
   }
 
@@ -111,13 +138,86 @@ class FFAppState extends ChangeNotifier {
     prefs.setStringList('ff_userIngredientDislikes', _userIngredientDislikes);
   }
 
-  DocumentReference? _user;
-  DocumentReference? get user => _user;
-  set user(DocumentReference? value) {
-    _user = value;
-    value != null
-        ? prefs.setString('ff_user', value.path)
-        : prefs.remove('ff_user');
+  /// List of all the availeble ingredients
+  List<InfoProductStruct> _Ingredients = [];
+  List<InfoProductStruct> get Ingredients => _Ingredients;
+  set Ingredients(List<InfoProductStruct> value) {
+    _Ingredients = value;
+    prefs.setStringList(
+        'ff_Ingredients', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToIngredients(InfoProductStruct value) {
+    Ingredients.add(value);
+    prefs.setStringList(
+        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromIngredients(InfoProductStruct value) {
+    Ingredients.remove(value);
+    prefs.setStringList(
+        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromIngredients(int index) {
+    Ingredients.removeAt(index);
+    prefs.setStringList(
+        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
+  }
+
+  void updateIngredientsAtIndex(
+    int index,
+    InfoProductStruct Function(InfoProductStruct) updateFn,
+  ) {
+    Ingredients[index] = updateFn(_Ingredients[index]);
+    prefs.setStringList(
+        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInIngredients(int index, InfoProductStruct value) {
+    Ingredients.insert(index, value);
+    prefs.setStringList(
+        'ff_Ingredients', _Ingredients.map((x) => x.serialize()).toList());
+  }
+
+  List<RecipeStruct> _Recipes = [];
+  List<RecipeStruct> get Recipes => _Recipes;
+  set Recipes(List<RecipeStruct> value) {
+    _Recipes = value;
+    prefs.setStringList('ff_Recipes', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToRecipes(RecipeStruct value) {
+    Recipes.add(value);
+    prefs.setStringList(
+        'ff_Recipes', _Recipes.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromRecipes(RecipeStruct value) {
+    Recipes.remove(value);
+    prefs.setStringList(
+        'ff_Recipes', _Recipes.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromRecipes(int index) {
+    Recipes.removeAt(index);
+    prefs.setStringList(
+        'ff_Recipes', _Recipes.map((x) => x.serialize()).toList());
+  }
+
+  void updateRecipesAtIndex(
+    int index,
+    RecipeStruct Function(RecipeStruct) updateFn,
+  ) {
+    Recipes[index] = updateFn(_Recipes[index]);
+    prefs.setStringList(
+        'ff_Recipes', _Recipes.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInRecipes(int index, RecipeStruct value) {
+    Recipes.insert(index, value);
+    prefs.setStringList(
+        'ff_Recipes', _Recipes.map((x) => x.serialize()).toList());
   }
 }
 
