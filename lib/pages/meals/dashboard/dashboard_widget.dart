@@ -258,6 +258,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     'Keykia_${recipeIndex.toString()}',
                                   ),
                                   mealRef: recipeItem.body,
+                                  name: recipeItem.name,
                                 ),
                               ),
                             );

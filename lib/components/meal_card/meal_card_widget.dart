@@ -11,9 +11,11 @@ class MealCardWidget extends StatefulWidget {
   const MealCardWidget({
     super.key,
     this.mealRef,
+    required this.name,
   });
 
   final String? mealRef;
+  final String? name;
 
   @override
   State<MealCardWidget> createState() => _MealCardWidgetState();
@@ -67,24 +69,37 @@ class _MealCardWidgetState extends State<MealCardWidget> {
             ),
           ),
           child: Align(
-            alignment: AlignmentDirectional(1.0, -1.0),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
-              child: Container(
-                width: 32.0,
-                height: 32.0,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(1.0, -1.0),
-                      child: Icon(
-                        Icons.favorite_border_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 32.0,
+            alignment: AlignmentDirectional(-1.0, 1.0),
+            child: Container(
+              width: 200.0,
+              height: 100.0,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    child: Text(
+                      valueOrDefault<String>(
+                        widget!.name,
+                        'Recipe Name',
                       ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            font: GoogleFonts.inter(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                            color: Colors.black,
+                            fontSize: 18.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
