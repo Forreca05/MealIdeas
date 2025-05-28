@@ -7,9 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'ingredients_model.dart';
@@ -36,9 +38,6 @@ class _IngredientsWidgetState extends State<IngredientsWidget> {
     _model = createModel(context, () => IngredientsModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'Ingredients'});
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
-
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -86,7 +85,7 @@ class _IngredientsWidgetState extends State<IngredientsWidget> {
                       Align(
                         alignment: AlignmentDirectional(0.0, -1.0),
                         child: Text(
-                          'Scan your Food',
+                          'What you have',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.inter(
@@ -117,96 +116,6 @@ class _IngredientsWidgetState extends State<IngredientsWidget> {
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                             borderRadius: BorderRadius.circular(0.0),
-                          ),
-                          child: Container(
-                            width: double.infinity,
-                            child: TextFormField(
-                              controller: _model.textController,
-                              focusNode: _model.textFieldFocusNode,
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                hintText: 'Search ingredients...',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.inter(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                filled: true,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                prefixIcon: Icon(
-                                  Icons.search,
-                                  color: Colors.white,
-                                  size: 20.0,
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                              cursorColor: FlutterFlowTheme.of(context).primary,
-                              validator: _model.textControllerValidator
-                                  .asValidator(context),
-                            ),
                           ),
                         ),
                       ),
@@ -275,52 +184,33 @@ class _IngredientsWidgetState extends State<IngredientsWidget> {
                             onPressed: () async {
                               logFirebaseEvent(
                                   'INGREDIENTS_FIND_RECIPES_WITH_THESE_INGR');
-                              for (int loop1Index = 0;
-                                  loop1Index <
-                                      (currentUserDocument?.allergens
-                                                  ?.toList() ??
-                                              [])
-                                          .map((e) => e)
-                                          .toList()
-                                          .length;
-                                  loop1Index++) {
-                                final currentLoop1Item =
+                              logFirebaseEvent('Button_haptic_feedback');
+                              HapticFeedback.heavyImpact();
+                              logFirebaseEvent('Button_backend_call');
+                              _model.apiResult = await GeminiCall.call(
+                                ingredientsList: functions.newCustomFunction(
+                                    FFAppState().Ingredients.toList()),
+                                alergents: functions.tostringFromstringlist(
                                     (currentUserDocument?.allergens?.toList() ??
                                             [])
-                                        .map((e) => e)
-                                        .toList()[loop1Index];
-                                logFirebaseEvent('Button_update_page_state');
-                                _model.addToAlergens(currentLoop1Item);
-                                safeSetState(() {});
-                              }
-                              logFirebaseEvent('Button_backend_call');
-                              _model.apiResultptt = await GeminiCall.call(
-                                ingredientsListJson: FFAppState()
-                                    .Ingredients
-                                    .map((e) => InfoProductStruct.maybeFromMap(
-                                            e.toMap())
-                                        ?.toMap())
-                                    .withoutNulls
-                                    .toList(),
-                                alergents: ((currentUserDocument?.allergens
+                                        .toList()),
+                                dislikes: functions.tostringFromstringlist(
+                                    (currentUserDocument?.ingredientDislikes
                                                 ?.toList() ??
                                             [])
-                                        .isNotEmpty)
-                                    .toString(),
-                                dislikesList: (currentUserDocument
-                                        ?.ingredientDislikes
-                                        ?.toList() ??
-                                    []),
+                                        .toList()),
                               );
 
-                              if ((_model.apiResultptt?.succeeded ?? true)) {
+                              if ((_model.apiResult?.succeeded ?? true)) {
                                 logFirebaseEvent('Button_navigate_to');
 
                                 context.pushNamed(
                                   MealDetailsWidget.routeName,
                                   queryParameters: {
                                     'recipe': serializeParam(
-                                      (_model.apiResultptt?.bodyText ?? ''),
+                                      GeminiCall.response(
+                                        (_model.apiResult?.jsonBody ?? ''),
+                                      ),
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
@@ -332,6 +222,7 @@ class _IngredientsWidgetState extends State<IngredientsWidget> {
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
                                       title: Text('error'),
+                                      content: Text('api fail'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>

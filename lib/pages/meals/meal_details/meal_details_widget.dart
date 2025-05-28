@@ -1,9 +1,12 @@
+import '/backend/schema/structs/index.dart';
 import '/components/custom_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'meal_details_model.dart';
@@ -13,9 +16,13 @@ class MealDetailsWidget extends StatefulWidget {
   const MealDetailsWidget({
     super.key,
     required this.recipe,
-  });
+    bool? showRemove,
+    this.index,
+  }) : this.showRemove = showRemove ?? true;
 
   final String? recipe;
+  final bool showRemove;
+  final int? index;
 
   static String routeName = 'MealDetails';
   static String routePath = 'mealdetails';
@@ -95,38 +102,113 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget> {
                         ),
                   ),
                 ),
-                FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  text: 'Button',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: GoogleFonts.inter(
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .fontStyle,
-                          ),
-                          color: Colors.white,
-                          letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .fontWeight,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent('MEAL_DETAILS_PAGE_ADD_BTN_ON_TAP');
+                          logFirebaseEvent('Button_haptic_feedback');
+                          HapticFeedback.lightImpact();
+                          logFirebaseEvent('Button_update_app_state');
+                          FFAppState().addToRecipes(RecipeStruct(
+                            body: widget!.recipe,
+                          ));
+                          safeSetState(() {});
+                          logFirebaseEvent('Button_navigate_to');
+
+                          context.pushNamed(DashboardWidget.routeName);
+                        },
+                        text: 'Add',
+                        options: FFButtonOptions(
+                          width: 150.0,
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                          elevation: 0.0,
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
-                    elevation: 0.0,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
+                      ),
+                    ),
+                    if (widget!.showRemove)
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent(
+                                'MEAL_DETAILS_PAGE_REMOVE_BTN_ON_TAP');
+                            logFirebaseEvent('Button_haptic_feedback');
+                            HapticFeedback.lightImpact();
+                            logFirebaseEvent('Button_update_app_state');
+                            FFAppState()
+                                .removeAtIndexFromRecipes(widget!.index!);
+                            safeSetState(() {});
+                            logFirebaseEvent('Button_navigate_to');
+
+                            context.pushNamed(DashboardWidget.routeName);
+                          },
+                          text: 'Remove',
+                          options: FFButtonOptions(
+                            width: 150.0,
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
+                            elevation: 0.0,
+                            borderRadius: BorderRadius.circular(24.0),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
@@ -134,7 +216,7 @@ class _MealDetailsWidgetState extends State<MealDetailsWidget> {
                     Text(
                       valueOrDefault<String>(
                         widget!.recipe,
-                        'the Recipi',
+                        'Something went Wrong',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             font: GoogleFonts.inter(

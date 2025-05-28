@@ -54,3 +54,12 @@ String getExpirationText(DateTime expirationDate) {
     return 'Expired';
   }
 }
+
+String newCustomFunction(List<InfoProductStruct> ingreditent) {
+  return '[${ingreditent.map((item) => '"${item.toString()}"').join(',')}]';
+}
+
+String tostringFromstringlist(List<String> listo) {
+  //
+  return '[${listo.map((item) => '"$item"').join(',')}]';
+}

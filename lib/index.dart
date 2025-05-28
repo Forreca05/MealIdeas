@@ -18,8 +18,7 @@ export '/pages/onboarding/x_forgot_password/x_forgot_password_widget.dart'
 export '/pages/profile/edit_allergens/edit_allergens_widget.dart'
     show EditAllergensWidget;
 export '/pages/meals/scan_food/scan_food_widget.dart' show ScanFoodWidget;
-export '/pages/meals/ingredients/ingredients_widget.dart'
-    show IngredientsWidget;
+export '/pages/ingredients/ingredients_widget.dart' show IngredientsWidget;
 export '/pages/meals/add_ingredient/add_ingredient_widget.dart'
     show AddIngredientWidget;
 export '/pages/profile/edit_disliked/edit_disliked_widget.dart'

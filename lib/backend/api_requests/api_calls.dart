@@ -63,12 +63,10 @@ class GetFoodInforCall {
 
 class GeminiCall {
   static Future<ApiCallResponse> call({
-    dynamic? ingredientsListJson,
+    String? ingredientsList = '',
     String? alergents = '',
-    List<String>? dislikesList,
+    String? dislikes = '',
   }) async {
-    final dislikes = _serializeList(dislikesList);
-    final ingredientsList = _serializeJson(ingredientsListJson, true);
     final ffApiRequestBody = '''
 {
   "contents": [
@@ -76,7 +74,7 @@ class GeminiCall {
       "role": "user",
       "parts": [
         {
-          "text": "You are a special Chef who creates recipes based on available ingredients, dietary restrictions, and environmental consciousness.          Here are the details:          My ingredients:${ingredientsList}My allergens:My dislikes:          Create a recipe using some of the provided ingredients, adding others if necessary. The recipe should minimize waste, and you should include tips on how to reuse any scraps or leftovers."
+          "text": "Hi, you are going to perform the role of a special Chef.\\n\\nYou must consider the following:\\n- The list of ingredients I have (below), including their quantities and expiration dates.${escapeStringForJson(ingredientsList)}\\n- My dietary dislikes${escapeStringForJson(dislikes)}.\\n- My allergens${escapeStringForJson(alergents)}.\\n\\nUsing this information, create a recipe that includes some of the ingredients I already have. You may add other ingredients if necessary.\\n\\nYour recipe should aim to minimize food waste. Additionally, provide tips on how to reuse scraps or leftovers in environmentally friendly ways.\\n\\nIngredients: ${escapeStringForJson(ingredientsList)}\\nAllergens: ${escapeStringForJson(alergents)}\\nDislikes: ${escapeStringForJson(dislikes)}\\n\\nRespond strictly in the following format, in a single plain-text output without extra paragraphs or conversational interaction:\\n\\n<Title of the Recipe> Ingredients (that I have):\\\\n- item 1\\\\n- item 2\\\\n...\\\\nIngredients (needed):\\\\n- item A\\\\n- item B\\\\n...\\\\n\\\\nRecipe:\\\\nStep-by-step instructions...\\\\n\\\\nWaste Reduction Tips:\\\\n- tip 1\\\\n- tip 2\\\\n..."
         }
       ]
     }
@@ -85,10 +83,10 @@ class GeminiCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Gemini ',
       apiUrl:
-          'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDm-7ajC0VqKo5yFNoOrq9Ps5A-yH6ri3U',
+          'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyD6g8CsEgFFOLJgf_HHQK6IBD5-Y7ua0iQ',
       callType: ApiCallType.POST,
       headers: {
-        'Content-Type': 'text/plain',
+        'Content-Type': 'application/json',
       },
       params: {},
       body: ffApiRequestBody,
@@ -123,12 +121,7 @@ class GeminiCopyCall {
       "role": "user",
       "parts": [
         {
-          "text": "You are a special Chef who creates recipes based on available ingredients, dietary restrictions, and environmental consciousness.          Here are the details:          My ingredients:${ingredientsList}My allergens:${escapeStringForJson(alergents)}My dislikes:${dislikes}          Create a recipe using some of the provided ingredients, adding others if necessary. The recipe should minimize waste, and you should include tips on how to reuse any scraps or leftovers."
-        }
-      ]
-    }
-  ]
-}''';
+          "text": "You are a special Chef who creates recipes based on available ingredients, dietary restrictions, and environmental consciousness.          Here are the details:          My ingredients:\${jsonEncode(${ingredientsList})} My allergens:\${jsonEncode(${escapeStringForJson(alergents)})}"}]}]}''';
     return ApiManager.instance.makeApiCall(
       callName: 'Gemini  Copy',
       apiUrl:
@@ -141,18 +134,13 @@ class GeminiCopyCall {
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
-      encodeBodyUtf8: true,
+      encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
       isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
-
-  static String? response(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$.candidates[:].content.parts[:].text''',
-      ));
 }
 
 class ApiPagingParams {

@@ -1,8 +1,6 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/empty_state/empty_state_widget.dart';
 import '/components/meal_card/meal_card_widget.dart';
-import '/components/meal_card_loading/meal_card_loading_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -56,6 +54,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -185,62 +185,85 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.all(14.0),
-                    child: AuthUserStreamWidget(
-                      builder: (context) => StreamBuilder<List<MealsRecord>>(
-                        stream: queryMealsRecord(
-                          queryBuilder: (mealsRecord) => mealsRecord.where(
-                            'meal_diet',
-                            arrayContains:
-                                valueOrDefault(currentUserDocument?.diet, ''),
+                    child: Builder(
+                      builder: (context) {
+                        final recipe =
+                            FFAppState().Recipes.map((e) => e).toList();
+                        if (recipe.isEmpty) {
+                          return Container(
+                            width: double.infinity,
+                            child: EmptyStateWidget(
+                              icon: Icon(
+                                Icons.no_food_outlined,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 64.0,
+                              ),
+                              title: 'No Meals',
+                              description:
+                                  'No meals have been created or match your dietary preferences.',
+                            ),
+                          );
+                        }
+
+                        return GridView.builder(
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 0.78,
                           ),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return MealCardLoadingWidget();
-                          }
-                          List<MealsRecord> gridViewMealsRecordList =
-                              snapshot.data!;
-                          if (gridViewMealsRecordList.isEmpty) {
-                            return Container(
-                              width: double.infinity,
-                              child: EmptyStateWidget(
-                                icon: Icon(
-                                  Icons.no_food_outlined,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 64.0,
+                          scrollDirection: Axis.vertical,
+                          itemCount: recipe.length,
+                          itemBuilder: (context, recipeIndex) {
+                            final recipeItem = recipe[recipeIndex];
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'DASHBOARD_PAGE_Container_kia8ikej_ON_TAP');
+                                logFirebaseEvent('mealCard_navigate_to');
+
+                                context.pushNamed(
+                                  MealDetailsWidget.routeName,
+                                  queryParameters: {
+                                    'recipe': serializeParam(
+                                      recipeItem.body,
+                                      ParamType.String,
+                                    ),
+                                    'showRemove': serializeParam(
+                                      true,
+                                      ParamType.bool,
+                                    ),
+                                    'index': serializeParam(
+                                      recipeIndex,
+                                      ParamType.int,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              child: wrapWithModel(
+                                model: _model.mealCardModels.getModel(
+                                  recipeIndex.toString(),
+                                  recipeIndex,
                                 ),
-                                title: 'No Meals',
-                                description:
-                                    'No meals have been created or match your dietary preferences.',
+                                updateCallback: () => safeSetState(() {}),
+                                child: MealCardWidget(
+                                  key: Key(
+                                    'Keykia_${recipeIndex.toString()}',
+                                  ),
+                                  mealRef: recipeItem.body,
+                                ),
                               ),
                             );
-                          }
-
-                          return GridView.builder(
-                            padding: EdgeInsets.zero,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10.0,
-                              mainAxisSpacing: 10.0,
-                              childAspectRatio: 0.78,
-                            ),
-                            scrollDirection: Axis.vertical,
-                            itemCount: gridViewMealsRecordList.length,
-                            itemBuilder: (context, gridViewIndex) {
-                              final gridViewMealsRecord =
-                                  gridViewMealsRecordList[gridViewIndex];
-                              return MealCardWidget(
-                                key: Key(
-                                    'Keykia_${gridViewIndex}_of_${gridViewMealsRecordList.length}'),
-                                mealRef: gridViewMealsRecord,
-                              );
-                            },
-                          );
-                        },
-                      ),
+                          },
+                        );
+                      },
                     ),
                   ),
                 ),

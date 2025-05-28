@@ -120,6 +120,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
                   'recipe',
                   ParamType.String,
                 ),
+                showRemove: params.getParam(
+                  'showRemove',
+                  ParamType.bool,
+                ),
+                index: params.getParam(
+                  'index',
+                  ParamType.int,
+                ),
               ),
             ),
             FFRoute(

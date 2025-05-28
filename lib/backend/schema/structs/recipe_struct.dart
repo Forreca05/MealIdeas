@@ -10,19 +10,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class RecipeStruct extends FFFirebaseStruct {
   RecipeStruct({
-    String? title,
     String? body,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
-  })  : _title = title,
-        _body = body,
+  })  : _body = body,
         super(firestoreUtilData);
-
-  // "Title" field.
-  String? _title;
-  String get title => _title ?? '';
-  set title(String? val) => _title = val;
-
-  bool hasTitle() => _title != null;
 
   // "body" field.
   String? _body;
@@ -32,7 +23,6 @@ class RecipeStruct extends FFFirebaseStruct {
   bool hasBody() => _body != null;
 
   static RecipeStruct fromMap(Map<String, dynamic> data) => RecipeStruct(
-        title: data['Title'] as String?,
         body: data['body'] as String?,
       );
 
@@ -40,16 +30,11 @@ class RecipeStruct extends FFFirebaseStruct {
       data is Map ? RecipeStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
-        'Title': _title,
         'body': _body,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'Title': serializeParam(
-          _title,
-          ParamType.String,
-        ),
         'body': serializeParam(
           _body,
           ParamType.String,
@@ -58,11 +43,6 @@ class RecipeStruct extends FFFirebaseStruct {
 
   static RecipeStruct fromSerializableMap(Map<String, dynamic> data) =>
       RecipeStruct(
-        title: deserializeParam(
-          data['Title'],
-          ParamType.String,
-          false,
-        ),
         body: deserializeParam(
           data['body'],
           ParamType.String,
@@ -75,15 +55,14 @@ class RecipeStruct extends FFFirebaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is RecipeStruct && title == other.title && body == other.body;
+    return other is RecipeStruct && body == other.body;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([title, body]);
+  int get hashCode => const ListEquality().hash([body]);
 }
 
 RecipeStruct createRecipeStruct({
-  String? title,
   String? body,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
@@ -91,7 +70,6 @@ RecipeStruct createRecipeStruct({
   bool delete = false,
 }) =>
     RecipeStruct(
-      title: title,
       body: body,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,

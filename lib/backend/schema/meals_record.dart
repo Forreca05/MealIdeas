@@ -46,11 +46,6 @@ class MealsRecord extends FirestoreRecord {
   int get mealCalories => _mealCalories ?? 0;
   bool hasMealCalories() => _mealCalories != null;
 
-  // "meal_diet" field.
-  List<String>? _mealDiet;
-  List<String> get mealDiet => _mealDiet ?? const [];
-  bool hasMealDiet() => _mealDiet != null;
-
   void _initializeFields() {
     _mealName = snapshotData['meal_name'] as String?;
     _mealImage = snapshotData['meal_image'] as String?;
@@ -58,7 +53,6 @@ class MealsRecord extends FirestoreRecord {
     _mealAllergens = getDataList(snapshotData['meal_allergens']);
     _mealFavorites = getDataList(snapshotData['meal_favorites']);
     _mealCalories = castToType<int>(snapshotData['meal_calories']);
-    _mealDiet = getDataList(snapshotData['meal_diet']);
   }
 
   static CollectionReference get collection =>
@@ -123,8 +117,7 @@ class MealsRecordDocumentEquality implements Equality<MealsRecord> {
         e1?.mealIngredients == e2?.mealIngredients &&
         listEquality.equals(e1?.mealAllergens, e2?.mealAllergens) &&
         listEquality.equals(e1?.mealFavorites, e2?.mealFavorites) &&
-        e1?.mealCalories == e2?.mealCalories &&
-        listEquality.equals(e1?.mealDiet, e2?.mealDiet);
+        e1?.mealCalories == e2?.mealCalories;
   }
 
   @override
@@ -134,8 +127,7 @@ class MealsRecordDocumentEquality implements Equality<MealsRecord> {
         e?.mealIngredients,
         e?.mealAllergens,
         e?.mealFavorites,
-        e?.mealCalories,
-        e?.mealDiet
+        e?.mealCalories
       ]);
 
   @override

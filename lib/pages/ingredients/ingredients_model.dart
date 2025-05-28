@@ -7,10 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'ingredients_widget.dart' show IngredientsWidget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -28,18 +30,16 @@ class IngredientsModel extends FlutterFlowModel<IngredientsWidget> {
   void updateAlergensAtIndex(int index, Function(String) updateFn) =>
       alergens[index] = updateFn(alergens[index]);
 
+  String? ingredients;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for customAppbar component.
   late CustomAppbarModel customAppbarModel;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
   // Models for ingredientList dynamic component.
   late FlutterFlowDynamicModels<IngredientListModel> ingredientListModels;
   // Stores action output result for [Backend Call - API (Gemini )] action in Button widget.
-  ApiCallResponse? apiResultptt;
+  ApiCallResponse? apiResult;
 
   @override
   void initState(BuildContext context) {
@@ -51,9 +51,6 @@ class IngredientsModel extends FlutterFlowModel<IngredientsWidget> {
   @override
   void dispose() {
     customAppbarModel.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-
     ingredientListModels.dispose();
   }
 }
