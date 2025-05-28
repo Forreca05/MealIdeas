@@ -11,8 +11,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 class RecipeStruct extends FFFirebaseStruct {
   RecipeStruct({
     String? body,
+    String? name,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _body = body,
+        _name = name,
         super(firestoreUtilData);
 
   // "body" field.
@@ -22,8 +24,16 @@ class RecipeStruct extends FFFirebaseStruct {
 
   bool hasBody() => _body != null;
 
+  // "Name" field.
+  String? _name;
+  String get name => _name ?? '';
+  set name(String? val) => _name = val;
+
+  bool hasName() => _name != null;
+
   static RecipeStruct fromMap(Map<String, dynamic> data) => RecipeStruct(
         body: data['body'] as String?,
+        name: data['Name'] as String?,
       );
 
   static RecipeStruct? maybeFromMap(dynamic data) =>
@@ -31,12 +41,17 @@ class RecipeStruct extends FFFirebaseStruct {
 
   Map<String, dynamic> toMap() => {
         'body': _body,
+        'Name': _name,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
         'body': serializeParam(
           _body,
+          ParamType.String,
+        ),
+        'Name': serializeParam(
+          _name,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -48,6 +63,11 @@ class RecipeStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        name: deserializeParam(
+          data['Name'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -55,15 +75,16 @@ class RecipeStruct extends FFFirebaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is RecipeStruct && body == other.body;
+    return other is RecipeStruct && body == other.body && name == other.name;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([body]);
+  int get hashCode => const ListEquality().hash([body, name]);
 }
 
 RecipeStruct createRecipeStruct({
   String? body,
+  String? name,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -71,6 +92,7 @@ RecipeStruct createRecipeStruct({
 }) =>
     RecipeStruct(
       body: body,
+      name: name,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

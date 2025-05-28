@@ -18,7 +18,8 @@ export '/pages/onboarding/x_forgot_password/x_forgot_password_widget.dart'
 export '/pages/profile/edit_allergens/edit_allergens_widget.dart'
     show EditAllergensWidget;
 export '/pages/meals/scan_food/scan_food_widget.dart' show ScanFoodWidget;
-export '/pages/ingredients/ingredients_widget.dart' show IngredientsWidget;
+export '/pages/meals/ingredients/ingredients_widget.dart'
+    show IngredientsWidget;
 export '/pages/meals/add_ingredient/add_ingredient_widget.dart'
     show AddIngredientWidget;
 export '/pages/profile/edit_disliked/edit_disliked_widget.dart'
@@ -27,3 +28,5 @@ export '/pages/onboarding/create_account/create_account_widget.dart'
     show CreateAccountWidget;
 export '/pages/onboarding/log_in_account/log_in_account_widget.dart'
     show LogInAccountWidget;
+export '/pages/meals/gemini_response/gemini_response_widget.dart'
+    show GeminiResponseWidget;

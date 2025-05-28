@@ -206,6 +206,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               name: LogInAccountWidget.routeName,
               path: LogInAccountWidget.routePath,
               builder: (context, params) => LogInAccountWidget(),
+            ),
+            FFRoute(
+              name: GeminiResponseWidget.routeName,
+              path: GeminiResponseWidget.routePath,
+              builder: (context, params) => GeminiResponseWidget(
+                recipe: params.getParam(
+                  'recipe',
+                  ParamType.String,
+                ),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

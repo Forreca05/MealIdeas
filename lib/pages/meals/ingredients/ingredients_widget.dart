@@ -205,7 +205,7 @@ class _IngredientsWidgetState extends State<IngredientsWidget> {
                                 logFirebaseEvent('Button_navigate_to');
 
                                 context.pushNamed(
-                                  MealDetailsWidget.routeName,
+                                  GeminiResponseWidget.routeName,
                                   queryParameters: {
                                     'recipe': serializeParam(
                                       GeminiCall.response(
