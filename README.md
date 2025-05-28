@@ -27,6 +27,7 @@ This Software Development Report, tailored for LEIC-ES-2024-25, provides compreh
     - [Sprint 3](#sprint-3)
     - [Board at the Begining of Sprint 3](#board-at-the-begining-of-sprint-3)
     - [Final Release](#final-release)
+    - [Happiness Matters](#happiness-matters)
 
 Contributions are expected to be made exclusively by the initial team, but we may open them to the community, after the course, in all areas and topics: requirements, technologies, development, experimentation, testing, etc.
 
@@ -371,5 +372,9 @@ Agile practices were well adopted, with strong organization via GitHub Projects,
 Despite minor challenges related to coordination and scheduling, the project met all key milestones. The final application is functional, cohesive, and stands as a solid representation of the team’s collaborative effort, with real potential for use in everyday food management.
 
 We look forward to the opportunity to bring this app into real-world use.
+
+### Happiness Matters
+<img src="img/HappinessMatters.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"/>
+
 
 
