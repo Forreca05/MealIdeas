@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import '/flutter_flow/flutter_flow_util.dart';
 
-const _kGeminiApiKey = 'AIzaSyDm-7ajC0VqKo5yFNoOrq9Ps5A-yH6ri3U';
+const _kGeminiApiKey = //your_api_key_here; // Replace with your actual API key
 
 Future<String?> geminiGenerateText(
   BuildContext context,

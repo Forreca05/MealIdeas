@@ -21,7 +21,7 @@ class BarcodeCallCall {
       callType: ApiCallType.GET,
       headers: {
         'x-rapidapi-host': 'barcodes1.p.rapidapi.com',
-        'x-rapidapi-key': '7f492fca8bmsha2ad0d86edc46b9p1d7428jsn6daf97c8e03e',
+        'x-rapidapi-key': //your_api_key_here, // Replace with your actual API key
       },
       params: {
         'query': valueBarCode,
@@ -83,7 +83,7 @@ class GeminiCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Gemini ',
       apiUrl:
-          'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyD6g8CsEgFFOLJgf_HHQK6IBD5-Y7ua0iQ',
+          //your apiUrl_here; // Replace with your actual API URL
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
